@@ -5,7 +5,7 @@ weight: 5
 
 {{< callout type="info" >}} Available since 4.0.0-alpha.2.0 {{< /callout >}}
 
-The MKE Dashboard add-on provides the web UI to manage Kubernetes resources management:
+The MKE Dashboard add-on provides a web UI with which you can manage Kubernetes resources:
 
 ![MKE dasboard preview](ui-preview.png)
 
