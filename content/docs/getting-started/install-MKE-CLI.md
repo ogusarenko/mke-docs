@@ -15,21 +15,21 @@ To automatically install the necessary dependencies, you can use an
 1. Install the dependencies by downloading and executing the following shell script:
 
    ```shell
-   sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Mirantis/mke-docs/main/content/docs/getting-started/install.sh)"
+   sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/MirantisContainers/mke-release/refs/heads/main/install.sh)"
     ```
 
    If you want to override default dependency versions, pass the `MKECTL_VERSION`, `KUBECTL_VERSION`
    and `K0SCTL_VERSION` as required. For example:
 
    ```shell
-   sudo K0SCTL_VERSION=0.19.0 /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/Mirantis/mke-docs/main/content/docs/getting-started/install.sh)"
+   sudo K0SCTL_VERSION=0.19.0 /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/MirantisContainers/mke-release/refs/heads/main/install.sh)"
    ```
 
    If you prefer to run the script in the debug mode for more detailed output and logging,
    set `DEBUG=true`:
 
    ```shell
-   sudo DEBUG=true /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/Mirantis/mke-docs/main/content/docs/getting-started/install.sh)"
+   sudo DEBUG=true /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/MirantisContainers/mke-release/refs/heads/main/install.sh)"
    ```
 
 2. Confirm the installations:
