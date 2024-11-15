@@ -3,48 +3,159 @@ title: Support bundle
 weight: 4
 ---
 
-For the Alpha.1 release, MKE 4 deploys k0s v1.29.3, which does not inherently
-support the [Replicated support bundle
-tool](https://troubleshoot.sh/docs/support-bundle/introduction/).
+To generate support bundles directly from the command line, you must have the
+kubectl extension support bundle plugin installed.
 
-## Manually collect a support bundle
+## Install the support bundle plugin
 
-1. SSH into the manager node.
-2. Download and install the `support-bundle` tool:
+You can install the support bundle plugin using Krew plugin manager, or you can
+obtain the support bundle plugin from the release archives and install it manually.
 
-   ```shell
-   curl -L https://github.com/replicatedhq/troubleshoot/releases/latest/download/support-bundle_linux_amd64.tar.gz | tar xzvf -
-   ```
-3. Create a YAML file that details the support bundle configuration.
+{{< tabs items="Krew installation,Manual installation" >}}
 
-   Example `support-bundle-worker.yaml` file:
+    {{< tab >}}
+    1. Optional. Install the Krew plugin manager if is not yet installed on your
+       system. For detailed instruction, refer to the official Krew documentaiton
+       [Installing](https://krew.sigs.k8s.io/docs/user-guide/setup/install/).
+    
+    2. Install the support bundle plugin:
+        
+       ```commandline
+       kubectl krew install support-bundle
 
-   ```yaml
-     apiVersion: troubleshoot.sh/v1beta2
-     kind: SupportBundle
-     metadata:
-       name: sample
-     spec:
-       collectors:
-         - logs:
-             selector:
-               - app.kubernetes.io/name=blueprint-webhook
-           namespace: blueprint-system
-           name: logs/blueprint-system
-         - logs:
-             selector:
-               - control-plane=controller-manager
-             namespace: blueprint-system
-             name: logs/blueprint-system
-     ```
 
-     This configuration accomplishes the following:
+    3. Append the ``$HOME/.krew/bin`` directory to your ``$PATH`` environment variable:
 
-     - Captures of cluster information
-     - Sets of cluster resources
-     - Collects logs from the `blueprint-controller-manager` and
-       `blueprint-operator-webhook` pods, in the `logs/` directory of the
-       output.
+       ```commandline
+       export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+       ```
+
+    4. Verify the support bundle plugin installation:
+
+       1. Restart your shell.
+
+       2. Run the ``kubectl krew`` command.
+    
+    {{< /tab >}}
+    
+    {{< tab >}}
+    
+    You can manually install the support bundle plugin from the release archives.
+    A key advantage this method offers is that it facilitates the installation
+    in air gap environments.
+    
+    Run the following command to download and unarchive the latest release,
+    and move the plugin to your ``$PATH``:
+    
+    ```commandline
+    curl -L https://github.com/replicatedhq/troubleshoot/releases/latest/download/support-bundle_linux_amd64.tar.gz | tar xzvf -
+    sudo mv ./support-bundle /usr/local/bin/kubectl-support_bundle
+        ```
+    {{< /tab >}}
+
+{{< /tabs >}}
+
+## Upgrade a support bundle
+
+The instruction for upgrading the support bundle plugin corresponds to the
+method that was used to install the plugin. 
+
+{{< tabs items="Krew installation,Manual installation" >}}
+
+    {{< tab >}}
+    Run the following krew command to upgrade your existing support-bundle:
+   
+    ```commandline
+    kubectl krew upgrade support-bundle
+    ```
+    {{< /tab >}}
+
+    {{< tab >}}
+    Run the following commands to manually upgrade your existing support-bundle:
+    
+    1. Download the latest version of the plugin:
+
+    ```commandline
+    curl -L https://github.com/replicatedhq/troubleshoot/releases/latest/download/support-bundle_linux_amd64.tar.gz | tar xzvf -
+    ```
+
+    2. Replace the existing plugin with the new version:
+
+    ```commandline
+    sudo mv ./support-bundle /usr/local/bin/kubectl-support_bundle
+    ```
+
+    {{< /tab >}}
+
+{{< /tabs >}}
+
+## Uninstall a support bundle
+
+The instruction for uninstalling the support bundle plugin corresponds to the
+method that was used to install the plugin. 
+
+{{< tabs items="Krew installation,Manual installation" >}}
+
+    {{< tab >}}
+    Run the following command to remove the support bundle plugin:
+    
+    ```commandline
+    kubectl krew uninstall support-bundle
+    ```
+    {{< /tab >}}
+    {{< tab >}}
+    1. Delete the `support-bundle` binary file from where it was placed
+      at installation. 
+    2. Remove the support bundle:
+    
+      ```commandline
+      sudo rm /usr/local/bin/kubectl-support_bundle
+      ```
+    {{< /tab >}}
+  
+{{< /tabs >}}
+
+## Create a support bundle
+
+1. Construct a YAML file to set the support bundle configuration.
+
+    The example ``your-support-bundle.yaml`` file that follows:
+    
+    - Collects basic information about the cluster.
+    - Enumerates all available resources in the cluster.
+    - Collects logs from the ``blueprint-controller-manager`` and
+      ``blueprint-operator-webhook`` pods, in the ``logs/`` directory of the output.
+    
+    ```yaml
+      apiVersion: troubleshoot.sh/v1beta2
+      kind: SupportBundle
+      metadata:
+        name: sample
+      spec:
+        collectors:
+          - logs:
+              selector:
+                - app.kubernetes.io/name=blueprint-webhook
+            namespace: blueprint-system
+            name: logs/blueprint-system
+          - logs:
+              selector:
+                - control-plane=controller-manager
+              namespace: blueprint-system
+              name: logs/blueprint-system
+    ```
+
+2. Generate the support bundle:
+
+    ```commandline
+    kubectl support-bundle ./path-to-your-support-bundle.yaml
+    ```
+
+   By default, the support bundle collects cluster information and cluster resources.
+    
+   For a comprehensive list of available in-cluster collectors, refer to the official
+   Troubleshoot [All Collectors](https://troubleshoot.sh/docs/collect/all/)
+   documentation.
 
 ## Collect host information using the k0s-provided YAML file
 
