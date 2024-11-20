@@ -9,6 +9,6 @@ enhancements, addressed issues, major middleware component versions, known
 issues, and security concerns.
 
 {{< cards >}}
-  {{< card link="features" title="Features" icon="lightning-bolt" >}}
+  {{< card link="features-summary" title="Features summary" icon="lightning-bolt" >}}
   {{< card link="4.0.0" title="4.0.0" icon="lightning-bolt" >}}
 {{< /cards >}}
