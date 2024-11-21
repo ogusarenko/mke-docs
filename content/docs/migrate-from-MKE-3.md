@@ -23,7 +23,7 @@ Verify that you have the following components in place before you begin upgradin
   ip-172-31-199-207.us-west-2.compute.internal   Ready    master   8m4s    v1.27.7-mirantis-1
   ```
 
-- The latest `mkectl` binary, installed on your local enviroment:
+- The latest `mkectl` binary, installed on your local environment:
 
   ```shell
   mkectl version
@@ -35,7 +35,7 @@ Verify that you have the following components in place before you begin upgradin
   Version: v4.0.0-alpha.1.0
   ```
 
-- `k0sctl` version `0.17.4`, installed on your local enviroment:
+- `k0sctl` version `0.19.0`, installed on your local environment:
 
   ```shell
   k0sctl version
@@ -44,8 +44,8 @@ Verify that you have the following components in place before you begin upgradin
   Example output:
 
   ```shell
-  version: v0.17.4
-  commit: 372a589
+  version: v0.19.0
+  commit: 9246ddc
   ```
 
 - A `hosts.yaml` file, to provide the information required by `mkectl` to
@@ -81,6 +81,10 @@ file:
 mkectl init --mke3-config </path/to/mke3-config.toml>
 ```
 
+{{< callout type="info" >}} To upgrade an MKE 3 cluster with GPU enabled,
+ensure you complete the [GPU prerequisites](/docs/configuration/gpu/#prerequisites) before
+starting the upgrade process. {{< /callout >}}
+
 ## Perform the migration
 
 An upgrade from MKE 3 to MKE 4 consists of the following steps, all of which
@@ -91,7 +95,7 @@ are performed through the use of the `mkectl` tool:
   a hyperkube-based MKE 3 cluster to a k0s-based MKE 4 cluster.
 - Migrate manager nodes to k0s.
 - Migrate worker nodes to k0s.
-- Carry out post-upgrade cleanup, to remove MKE 3 components.
+- Carry out post-upgrade cleanup to remove MKE 3 components.
 - Output the new MKE 4 config file.
 
 To upgrade an MKE 3 cluster, use the `mkectl upgrade` command:
@@ -138,3 +142,91 @@ client bundle. The docker swarm cluster will no longer be accessible as well.
 
 In the event of an upgrade failure, the upgrade process rolls back,
 restoring the MKE 3 cluster to its original state.
+
+## RBAC Migrations
+
+As MKE 4 does not support Swarm mode, the platform uses standard [Kubernetes
+RBAC authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
+As such, the Swarm authorization configuration that is in place for MKE 3 is not present in MKE 4.
+
+
+### Groups
+
+To enable the same RBAC hierarchy as in MKE 3 with ``orgs`` and ``teams`` groups, but
+without the two-level limitation, MKE 4 replaces ``orgs`` and ``teams`` with
+the Kubernetes ``AggregatedRoles``. 
+
+**Authorization structure comparison:**
+
+```
+MKE 3:                           MKE 4:
+
+├── entire-company (org)         ├── entire-company-org (AggregatedRole)
+│   ├── development (team)       ├── development-team (AggregatedRole)
+│   │   ├── bob (user)           │   ├── bob (user)
+│   ├── production (team)        ├── production-team (AggregatedRole)
+│   │   ├── bob (user)│          │   ├── bob (user)
+│   │   ├── bill (user)          │   ├── bill (user)
+│   ├── sales (team)             ├── sales-team (AggregatedRole)
+```
+
+### Roles
+
+Roles are bound to the aggregated roles for integration into the org, team, and user structure.
+Thus, what was previously an organization or a team role will have ``-org`` or ``-team``
+appended to its name.
+
+A role can be assigned at any level in the hierarchy, with its permissions granted to all members
+at that same level.
+
+**Example organization binding:**
+
+```
+├── entire-company-org (AggregatedRole) -- entire-company-org (RoleBinding) -- view (Role)
+│   ├── development-team (AggregatedRole)
+│   │   ├── bob (user)
+│   ├── production-team (AggregatedRole)
+│   │   ├── bob (user)
+│   │   ├── bill (user)
+│   ├── sales-team (AggregatedRole)
+```
+
+
+In the example above, all members of the ``entire-company`` org group have
+``view`` permissions. This includes the ``development-team``,
+``production-team``, ``sales-team``, ``bob``, and ``bill``.
+
+**Example team binding:**
+
+```
+│   ├── development:team (AggregatedRole) -- development:team (RoleBinding) -- edit (Role)
+│   │   ├── bob (user)
+```
+
+In the example above, the binding grants ``edit`` permissions only to the
+members of the development team, which only includes ``bob``.
+
+{{< callout type="warning" >}}
+
+Swarm roles are partially translated to Kubernetes roles. During migration,
+any detected Swarm role is replicated without permissions, thus
+preserving the org/team/user structure.
+If no Swarm roles are detected, a ``none`` role is created as a placeholder,
+as Kubernetes requires each aggregated role to have at least one role.
+This ``none`` role has no permissions, with its only purpose being to maintain
+structural integrity.
+
+{{< /callout >}}
+
+## CoreDNS Lameduck migration
+
+MKE 4 supports migration from MKE 3 systems that are running with CoreDNS and
+Lameduck enabled. Refer
+to the table below for a comparison of the CoreDNS Lameduck configuration
+parameters between MKE 3 and MKE 4:
+
+| MKE 3                                              | MKE 4                 |
+|----------------------------------------------------|-----------------------|
+| [cluster_config.core_dns_lameduck_config.enabled]  | dns.lameduck.enabled  |
+| [cluster_config.core_dns_lameduck_config.duration] | dns.lameduck.duration |
+

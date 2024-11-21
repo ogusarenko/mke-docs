@@ -1,5 +1,5 @@
 # Configuration
-baseURL: "https://mke4-docs/"
+baseURL: "https://mirantis.github.io/mke-docs"
 title: "Mirantis Kubernetes Engine 4"
 theme: hextra
 
@@ -104,4 +104,4 @@ params:
 
   editURL:
     enable: true
-    base: "https://github.com/Mirantis/mke-docs/edit/main/README.md"
+    base: "https://github.com/Mirantis/mke-docs/edit/main/content"
