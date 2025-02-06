@@ -57,7 +57,7 @@ jobs:
       - name: Upload artifact
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_CI_BOUNDLESS }}
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
