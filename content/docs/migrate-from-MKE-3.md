@@ -96,20 +96,7 @@ Verify that you have the following components in place before you begin upgradin
   Example output:
 
   ```shell
-  Version: v4.0.0
-  ```
-
-- `k0sctl` version `0.19.0`, installed on your local environment:
-
-  ```shell
-  k0sctl version
-  ```
-
-  Example output:
-
-  ```shell
-  version: v0.19.4
-  commit: a06d3f6
+  Version: v4.1.0
   ```
 
 - A `hosts.yaml` file, to provide the information required by `mkectl` to
@@ -256,7 +243,6 @@ Example output:
 WARN[0096] Initiating rollback because of upgrade failure. upgradeErr = aborting upgrade due to signal interrupt 
 INFO[0096] Initiating rollback of MKE to version: 3.8.5 
 INFO[0096] Step 1 of 2: [Rollback Upgrade Tasks]        
-INFO[0096] Resetting k0s using k0sctl ...               
 INFO[0106] ==> Running phase: Connect to hosts          
 INFO[0106] [ssh] 54.151.30.20:22: connected             
 INFO[0106] [ssh] 54.215.145.126:22: connected           
