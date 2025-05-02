@@ -83,3 +83,17 @@ applied in the MKE 4 configuration file, as this can cause the MKE cluster to
 malfunction.
 
 No workaround is available at this time.
+
+<!--- [BOP-2063] -->
+
+## Upgrades from MKE 3 randomly fail while initializing k0rdent
+
+Upgrades from MKE 3 to MKE 4k sometimes fail with the following error:
+
+```bash
+FTL Upgrade failed due to error: failed to run step [Install MKE 4 Components]: unable to initialize k0rdent after upgrading to mke4: failed to wait for KCM Manager to be ready: failed to wait for KCM Manager deployment to be ready: context deadline exceeded
+```
+
+**Workaround:**
+
+Following a successful rollback, attempt the upgrade again, with no changes to the `mkectl upgrade` command.
