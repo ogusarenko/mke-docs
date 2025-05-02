@@ -1,5 +1,5 @@
 ---
-title: Migrate from MKE 3.x
+title: Upgrade from MKE 3.7 or 3.8
 weight: 4
 ---
 
@@ -8,20 +8,20 @@ Comprehensive information is offered herein on how to migrate your existing MKE
 
 {{< callout type="important" >}}
 
-In the event of migration failure, the cluster will rollback to your previous
+In the event of upgrade failure, the cluster will rollback to your previous
 MKE 3 configuration. Should this occur, Mirantis recommends that you retain the
 upgrade logs from the terminal.
 
 {{< /callout >}}
 
-Following a successful migration:
+Following a successful upgrade:
 - Any swarm workloads will no longer exist.
 - It is necessary to download new kubeconfig files from k0s.
 - The UCP Controller API will no longer be active or supported, and thus the
   MKE 3 client bundle will become invalid.
 - The terminal prints a summary of the process.
 
-  {{< details title="Example: Migration Summary" closed="true" >}}
+  {{< details title="Example: Upgrade Summary" closed="true" >}}
 
   ```
   Upgrade Summary
@@ -35,7 +35,7 @@ Following a successful migration:
   ---------------
   Users found in the MKE3 cluster: 1
 
-  All users were migrated to the MKE4 cluster successfully.
+  All users were upgraded to the MKE4 cluster successfully.
 
   Authorization
   ---------------
@@ -60,11 +60,11 @@ Following a successful migration:
   {{< /details >}}
 
 Be aware that any workloads running in your MKE 3 system will not be available
-during the migration process.
+during the upgrade process.
 
 The upgrade period depends on the size of your cluster. You can track the
-progress of your migration by way of the terminal, which displays step-by-step
-logs on the current state of migration.
+progress of your upgrade by way of the terminal, which displays step-by-step
+logs on the current state of upgrade.
 
 ## Prerequisites
 
@@ -157,7 +157,7 @@ KDD typically takes about 20 seconds per node, depending on the size of the clus
 completion, the following confirmation displays:
 
 ```shell
-{"message":"Calico datastore migration from etcd to kdd successful"}
+{"message":"Calico datastore upgrade from etcd to kdd successful"}
 ```
 {{< /callout >}}
 
@@ -167,10 +167,10 @@ An upgrade from MKE 3 to MKE 4 consists of the following steps, all of which
 are performed through the use of the `mkectl` tool:
 
 - Run pre-upgrade checks to verify the upgradability of the cluster.
-- Carry out pre-upgrade migrations to prepare the cluster for a migration from
+- Carry out pre-upgrade migrations to prepare the cluster for an upgrade from
   a hyperkube-based MKE 3 cluster to a k0s-based MKE 4 cluster.
-- Migrate manager nodes to k0s.
-- Migrate worker nodes to k0s.
+- Upgrade manager nodes to k0s.
+- Upgrade worker nodes to k0s.
 - Carry out post-upgrade cleanup to remove MKE 3 components.
 - Output the new MKE 4 config file.
 
@@ -189,7 +189,7 @@ see [System requirements: Load balancer
 requirements](../getting-started/system-requirements#load-balancer-requirements).
 
 The `--config-out` flag allows you to specify a path where the MKE 4 configuration
-file will be automatically created and saved during migration. If not specified,
+file will be automatically created and saved during upgrade. If not specified,
 the configuration file prints to your console on completion. In this case, save
 the output to a file for future reference
 
@@ -292,7 +292,7 @@ INFO[0178] Rollback to MKE version 3.8.5 completed successfully ...
 FATA[0178] Upgrade failed due to error: aborting upgrade due to signal interrupt 
 ```
 
-## Revert the migration
+## Revert the upgrade
 
 To revert a cluster upgraded to MKE 4 back to MKE 3:
 
@@ -301,7 +301,7 @@ To revert a cluster upgraded to MKE 4 back to MKE 3:
 2. [Restore MKE 3 from a backup](https://docs.mirantis.com/mke/current/ops/disaster-recovery.html).
 
 
-## RBAC Migrations
+## RBAC upgrades
 
 As MKE 4 does not support Swarm mode, the platform uses standard [Kubernetes
 RBAC authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
@@ -364,7 +364,7 @@ members of the development team, which only includes `bob`.
 
 {{< callout type="warning" >}}
 
-Swarm roles are partially translated to Kubernetes roles. During migration,
+Swarm roles are partially translated to Kubernetes roles. During upgrade,
 any detected Swarm role is replicated without permissions, thus
 preserving the org/team/user structure.
 If no Swarm roles are detected, a `none` role is created as a placeholder,
@@ -374,9 +374,9 @@ structural integrity.
 
 {{< /callout >}}
 
-## CoreDNS Lameduck migration
+## CoreDNS Lameduck upgrade
 
-MKE 4 supports migration from MKE 3 systems that are running with CoreDNS and
+MKE 4 supports upgrading from MKE 3 systems that are running with CoreDNS and
 Lameduck enabled. Refer
 to the table below for a comparison of the CoreDNS Lameduck configuration
 parameters between MKE 3 and MKE 4:
@@ -386,9 +386,9 @@ parameters between MKE 3 and MKE 4:
 | [cluster_config.core_dns_lameduck_config.enabled]  | dns.lameduck.enabled  |
 | [cluster_config.core_dns_lameduck_config.duration] | dns.lameduck.duration |
 
-## Troubleshoot migration
+## Troubleshoot the upgrade
 
-You can address various potential MKE migration issues using the tips and
+You can address various potential MKE upgrade issues using the tips and
 suggestions detailed herein.
 
 ### MKE 3 ``etcdv3`` backend is unsupported for MKE 4 upgrade
@@ -410,7 +410,7 @@ To resolve the issue, ensure that:
 
 {{< callout type="info" >}}
 
-A KDD mode migration is irreversible. Thus, to reduce risk, when migrating
+A KDD mode upgrade is irreversible. Thus, to reduce risk, when upgrading
 enterprise clusters, it is recommended that you work directly with Mirantis to
 plan the process and monitor it through to completion.
 
@@ -422,7 +422,7 @@ Example output:
 $ AUTHTOKEN=$(curl --silent --insecure --data '{"username":"'$MKE_USERNAME'","password":"'$MKE_PASSWORD'"}' https://$MKE_HOST/auth/login | jq --raw-output .auth_token)
 
 $ curl --silent --insecure -X PUT -H "accept: application/toml" -H "Authorization: Bearer $AUTHTOKEN" --upload-file 'mke-config.toml' https://$MKE_HOST/api/ucp/config-toml
-{"message":"Calico datastore migration from etcd to kdd successful"}
+{"message":"Calico datastore upgrade from etcd to kdd successful"}
 ```
 
 {{< callout type="important" >}}

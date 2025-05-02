@@ -55,10 +55,11 @@ removed:
 -	`calico-system`
 -	`calico-apiserver`
 
-## Migration from MKE 3
+## Upgrade from MKE 3
 
 If OPA Gatekeeper is enabled in MKE 3, the templates, constraints and list of
-namespaces exempted from policy control are retained through the migration process.
+namespaces exempted from policy control are retained through the upgrade
+process.
 
 ## Test OPA Gatekeeper
 
