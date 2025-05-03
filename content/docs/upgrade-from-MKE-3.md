@@ -120,7 +120,7 @@ Verify that you have the following components in place before you begin upgradin
       keyPath: <path-to-ssh-key>
   ```
 
-- A ``calico_kdd`` flag is set to ``true`` in the MKE 3 configuration
+- A `calico_kdd` flag is set to `true` in the MKE 3 configuration
   file and applied to the MKE 3 cluster:
 
   ```yaml
@@ -133,12 +133,12 @@ Verify that you have the following components in place before you begin upgradin
      latest 3.7.x or 3.8.x release.
 
   2. Obtain the MKE 3 configuration file:
- 
+
      ```shell
-     $ export MKE_USERNAME=<mke-username>
-     $ export MKE_PASSWORD=<mke-password>
-     $ export MKE_HOST=<mke-fqdm-or-ip-address>
-     $ curl --silent --insecure -X GET "https://$MKE_HOST/api/ucp/config-toml" -H "accept: application/toml" -H "Authorization: Bearer $AUTHTOKEN" > mke-config.toml
+     export MKE_USERNAME=<mke-username>
+     export MKE_PASSWORD=<mke-password>
+     export MKE_HOST=<mke-fqdn-or-ip-address>
+     curl --silent --insecure -X GET "https://$MKE_HOST/api/ucp/config-toml" -H "accept: application/toml" -H "Authorization: Bearer $AUTHTOKEN" > mke-config.toml
      ```
 
   3. In the `cluster_config` section of the MKE 3 configuration file, set the
@@ -159,7 +159,80 @@ completion, the following confirmation displays:
 ```shell
 {"message":"Calico datastore upgrade from etcd to kdd successful"}
 ```
+
 {{< /callout >}}
+
+## Considerations
+
+Before you upgrade to MKE 4, confirm the existence of a backup of your MKE 3 cluster and review
+the [Back up MKE](https://docs.mirantis.com/mke/current/ops/disaster-recovery.html) disaster
+recovery documentation for MKE 3.
+
+{{< callout type="info" >}}
+
+The Swarm cluster and all associated artifacts are not included in the upgrade from MKE 3 to MKE 4.
+
+{{< /callout >}}
+
+Back up all non-MKE components separately, making sure to check both manager and worker nodes, as
+these are at risk of being deleted rather than migrated during the upgrade to MKE 4.
+
+## Migrate configuration
+
+In migrating to MKE 4 from MKE 3, you can directly transfer settings using `mkectl`.
+
+**To convert a local MKE 3 configuration for MKE 4:** set the `--mke3-config` flag
+to convert a downloaded MKE 3 configuration file into a valid MKE 4 configuration
+file:
+
+```bash
+mkectl init --mke3-config </path/to/mke3-config.toml>
+```
+
+{{< callout type="info" >}} To upgrade an MKE 3 cluster with GPU enabled,
+ensure you complete the [GPU prerequisites](../configuration/nvidia-gpu/#prerequisites) before
+starting the upgrade process. {{< /callout >}}
+
+### Kubernetes Custom Flags
+
+MKE 3 and MKE 4 both support the application of additional flags to Kubernetes components that have the following fields in the MKE configuration file, each specified as a list of strings:
+
+```
+custom_kube_api_server_flags
+custom_kube_controller_manager_flags
+custom_kubelet_flags
+custom_kube_scheduler_flags
+custom_kube_proxy_flags
+```
+
+MKE 4 supports an `extraArgs` field for each of these components, though, which accepts a map of key-value pairs. During upgrade from MKE 3, MKE 4 converts these custom flags to the corresponding `extraArgs` field. Any flags that cannot be automatically converted are listed in the upgrade summary.
+
+Example of custom flags conversion:
+
+- MKE 3 configuration file:
+
+  ```
+  [cluster_config.custom_kube_api_server_flags] = ["--enable-garbage-collector=false"]
+  ```
+
+- MKE 4 configuration file:
+
+  ```
+  spec:
+    apiServer:
+      extraArgs:
+        enable-garbage-collector: false
+  ```
+
+### Kubelet Custom Flag Profiles
+
+MKE 3 supports a map of kubelet flag profiles to specific nodes using the `custom_kubelet_flags_profiles` setting in the toml configuration file.
+
+MKE 4 does not support kubelet flag profiles, but you can use [Kubelet custom profiles](../configuration/kubernetes/kubelet.md#kubelet-custom-profiles) to map `KubeletConfiguration` values to specific nodes. MKE 4 does support the migration of MKE 3 kubelet flag profiles to kubelet custom profiles.
+
+The conversion of flags to `KubeletConfiguration` values is best-effort, and any flags that cannot be
+converted are listed in the upgrade summary. Hosts with a custom flag profile label are marked for the
+corresponding kubelet custom profile.
 
 ## Perform the migration
 
@@ -240,56 +313,57 @@ restoring the MKE 3 cluster to its original state.
 Example output:
 
 ```shell
-WARN[0096] Initiating rollback because of upgrade failure. upgradeErr = aborting upgrade due to signal interrupt 
-INFO[0096] Initiating rollback of MKE to version: 3.8.5 
-INFO[0096] Step 1 of 2: [Rollback Upgrade Tasks]        
-INFO[0106] ==> Running phase: Connect to hosts          
-INFO[0106] [ssh] 54.151.30.20:22: connected             
-INFO[0106] [ssh] 54.215.145.126:22: connected           
-INFO[0106] ==> Running phase: Detect host operating systems 
-INFO[0106] [ssh] 54.151.30.20:22: is running Ubuntu 22.04.5 LTS 
-INFO[0106] [ssh] 54.215.145.126:22: is running Ubuntu 22.04.5 LTS 
-INFO[0106] ==> Running phase: Acquire exclusive host lock 
-INFO[0107] ==> Running phase: Prepare hosts             
-INFO[0107] ==> Running phase: Gather host facts         
-INFO[0107] [ssh] 54.151.30.20:22: using ip-172-31-8-69.us-west-1.compute.internal as hostname 
-INFO[0107] [ssh] 54.215.145.126:22: using ip-172-31-48-46.us-west-1.compute.internal as hostname 
-INFO[0107] [ssh] 54.151.30.20:22: discovered ens5 as private interface 
-INFO[0107] [ssh] 54.215.145.126:22: discovered ens5 as private interface 
-INFO[0107] [ssh] 54.151.30.20:22: discovered 172.31.8.69 as private address 
-INFO[0107] [ssh] 54.215.145.126:22: discovered 172.31.48.46 as private address 
-INFO[0107] ==> Running phase: Gather k0s facts          
-INFO[0108] [ssh] 54.215.145.126:22: found existing configuration 
-INFO[0108] [ssh] 54.215.145.126:22: is running k0s controller+worker version v1.31.1+k0s.1 
-WARN[0108] [ssh] 54.215.145.126:22: the controller+worker node will not schedule regular workloads without toleration for node-role.kubernetes.io/master:NoSchedule unless 'noTaints: true' is set 
-INFO[0108] [ssh] 54.215.145.126:22: listing etcd members 
-INFO[0110] [ssh] 54.151.30.20:22: is running k0s worker version v1.31.1+k0s.1 
-INFO[0110] [ssh] 54.215.145.126:22: checking if worker ip-172-31-8-69.us-west-1.compute.internal has joined 
-INFO[0110] ==> Running phase: Reset workers             
-INFO[0111] [ssh] 54.151.30.20:22: reset                 
-INFO[0111] ==> Running phase: Reset controllers         
-INFO[0114] [ssh] 54.215.145.126:22: reset               
-INFO[0114] ==> Running phase: Reset leader              
-INFO[0114] [ssh] 54.215.145.126:22: reset               
-INFO[0114] ==> Running phase: Reload service manager    
-INFO[0114] [ssh] 54.151.30.20:22: reloading service manager 
-INFO[0114] [ssh] 54.215.145.126:22: reloading service manager 
-INFO[0115] ==> Running phase: Release exclusive host lock 
-INFO[0115] ==> Running phase: Disconnect from hosts     
-INFO[0115] ==> Finished in 8s                           
-INFO[0125] Running etcd cleanup service ...             
-INFO[0128] MKE3 etcd directories successfully cleaned up ... 
-INFO[0128] Restoring etcd from the previously taken system backup ... 
-INFO[0128] Successfully restored etcd with output:      
-INFO[0128] Deploying etcd server ...                    
-INFO[0129] Successfully deployed the etcd server with output: fb09c3e5e514d9ffe03a3df4bc461c29a695cf73d703ace5294702b7023021af 
-INFO[0129] Waiting for etcd to be healthy ...           
-INFO[0131] etcd health check succeeded!                 
-INFO[0178] [Rollback Upgrade Tasks] Completed           
-INFO[0178] Step 2 of 2: [Rollback Pre Upgrade Tasks]    
-INFO[0178] [Rollback Pre Upgrade Tasks] Completed       
-INFO[0178] Rollback to MKE version 3.8.5 completed successfully ... 
-FATA[0178] Upgrade failed due to error: aborting upgrade due to signal interrupt 
+WARN[0096] Initiating rollback because of upgrade failure. upgradeErr = aborting upgrade due to signal interrupt
+INFO[0096] Initiating rollback of MKE to version: 3.7.15
+INFO[0096] Step 1 of 2: [Rollback Upgrade Tasks]
+INFO[0096] Resetting k0s using k0sctl ...
+INFO[0106] ==> Running phase: Connect to hosts
+INFO[0106] [ssh] 54.151.30.20:22: connected
+INFO[0106] [ssh] 54.215.145.126:22: connected
+INFO[0106] ==> Running phase: Detect host operating systems
+INFO[0106] [ssh] 54.151.30.20:22: is running Ubuntu 22.04.5 LTS
+INFO[0106] [ssh] 54.215.145.126:22: is running Ubuntu 22.04.5 LTS
+INFO[0106] ==> Running phase: Acquire exclusive host lock
+INFO[0107] ==> Running phase: Prepare hosts
+INFO[0107] ==> Running phase: Gather host facts
+INFO[0107] [ssh] 54.151.30.20:22: using ip-172-31-8-69.us-west-1.compute.internal as hostname
+INFO[0107] [ssh] 54.215.145.126:22: using ip-172-31-48-46.us-west-1.compute.internal as hostname
+INFO[0107] [ssh] 54.151.30.20:22: discovered ens5 as private interface
+INFO[0107] [ssh] 54.215.145.126:22: discovered ens5 as private interface
+INFO[0107] [ssh] 54.151.30.20:22: discovered 172.31.8.69 as private address
+INFO[0107] [ssh] 54.215.145.126:22: discovered 172.31.48.46 as private address
+INFO[0107] ==> Running phase: Gather k0s facts
+INFO[0108] [ssh] 54.215.145.126:22: found existing configuration
+INFO[0108] [ssh] 54.215.145.126:22: is running k0s controller+worker version v1.31.1+k0s.1
+WARN[0108] [ssh] 54.215.145.126:22: the controller+worker node will not schedule regular workloads without toleration for node-role.kubernetes.io/master:NoSchedule unless 'noTaints: true' is set
+INFO[0108] [ssh] 54.215.145.126:22: listing etcd members
+INFO[0110] [ssh] 54.151.30.20:22: is running k0s worker version v1.31.1+k0s.1
+INFO[0110] [ssh] 54.215.145.126:22: checking if worker ip-172-31-8-69.us-west-1.compute.internal has joined
+INFO[0110] ==> Running phase: Reset workers
+INFO[0111] [ssh] 54.151.30.20:22: reset
+INFO[0111] ==> Running phase: Reset controllers
+INFO[0114] [ssh] 54.215.145.126:22: reset
+INFO[0114] ==> Running phase: Reset leader
+INFO[0114] [ssh] 54.215.145.126:22: reset
+INFO[0114] ==> Running phase: Reload service manager
+INFO[0114] [ssh] 54.151.30.20:22: reloading service manager
+INFO[0114] [ssh] 54.215.145.126:22: reloading service manager
+INFO[0115] ==> Running phase: Release exclusive host lock
+INFO[0115] ==> Running phase: Disconnect from hosts
+INFO[0115] ==> Finished in 8s
+INFO[0125] Running etcd cleanup service ...
+INFO[0128] MKE3 etcd directories successfully cleaned up ...
+INFO[0128] Restoring etcd from the previously taken system backup ...
+INFO[0128] Successfully restored etcd with output:
+INFO[0128] Deploying etcd server ...
+INFO[0129] Successfully deployed the etcd server with output: fb09c3e5e514d9ffe03a3df4bc461c29a695cf73d703ace5294702b7023021af
+INFO[0129] Waiting for etcd to be healthy ...
+INFO[0131] etcd health check succeeded!
+INFO[0178] [Rollback Upgrade Tasks] Completed
+INFO[0178] Step 2 of 2: [Rollback Pre Upgrade Tasks]
+INFO[0178] [Rollback Pre Upgrade Tasks] Completed
+INFO[0178] Rollback to MKE version 3.7.15 completed successfully ...
+FATA[0178] Upgrade failed due to error: aborting upgrade due to signal interrupt
 ```
 
 ## Revert the upgrade
@@ -391,9 +465,13 @@ parameters between MKE 3 and MKE 4:
 You can address various potential MKE upgrade issues using the tips and
 suggestions detailed herein.
 
-### MKE 3 ``etcdv3`` backend is unsupported for MKE 4k upgrade
+{{< callout type="important" >}}
 
-During the upgrade from MKE 3 to MKE 4, which defaults to the ``etcdv3``
+The MKE 3 `etcdv3` backend is not supported for upgrade to MKE 4k.
+
+{{< /callout >}}
+
+During the upgrade from MKE 3 to MKE 4, which defaults to the `etcdv3`
 backend, you may receive the following error:
 
 ```bash
@@ -405,7 +483,7 @@ Error: unable to generate upgrade config: unsupported configuration for mke4 upg
 To resolve the issue, ensure that:
 
 - The MKE 3 source is the latest 3.7.x or 3.8.x release.
-- The ``calico_kdd`` flag in the MKE 3 configuration file is set to `true`.
+- The `calico_kdd` flag in the MKE 3 configuration file is set to `true`.
 - The configuration is applied to the MKE 3 cluster.
 
 {{< callout type="info" >}}
