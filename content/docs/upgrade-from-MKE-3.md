@@ -179,16 +179,6 @@ these are at risk of being deleted rather than migrated during the upgrade to MK
 
 ## Migrate configuration
 
-In migrating to MKE 4 from MKE 3, you can directly transfer settings using `mkectl`.
-
-**To convert a local MKE 3 configuration for MKE 4:** set the `--mke3-config` flag
-to convert a downloaded MKE 3 configuration file into a valid MKE 4 configuration
-file:
-
-```bash
-mkectl init --mke3-config </path/to/mke3-config.toml>
-```
-
 {{< callout type="info" >}} To upgrade an MKE 3 cluster with GPU enabled,
 ensure you complete the [GPU prerequisites](../configuration/nvidia-gpu/#prerequisites) before
 starting the upgrade process. {{< /callout >}}
