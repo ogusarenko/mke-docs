@@ -59,8 +59,11 @@ Following a successful upgrade:
 
   {{< /details >}}
 
-Be aware that any workloads running in your MKE 3 system will not be available
-during the upgrade process.
+{{< callout type="warning" >}}
+
+Your MKE 3 system will be completely unavailable during the upgrade process. Cluster access will be restored only once the upgrade is complete. 
+
+{{< /callout >}}
 
 The upgrade period depends on the size of your cluster. You can track the
 progress of your upgrade by way of the terminal, which displays step-by-step
