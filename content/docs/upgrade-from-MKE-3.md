@@ -123,20 +123,14 @@ Verify that you have the following components in place before you begin upgradin
       keyPath: <path-to-ssh-key>
   ```
 
-- A `calico_kdd` flag is set to `true` in the MKE 3 configuration
-  file and applied to the MKE 3 cluster:
+- Calico migration to Kubernetes Datastore Driver (KDD) from etcd
 
-  ```yaml
-  calico_kdd = true
-  ```
+  {{< callout type="warning" >}}
+  To upgrade successfully to MKE 4k, the source MKE 3 cluster must be configured to use KDD.
+  {{< /callout >}}
 
-- Calico KDD (Kubernetes Datastore Driver), enabled:
-
-  1. Verify that the MKE 3.x instance being upgraded to MKE 4k is running the
-     latest 3.7.x or 3.8.x release.
-
-  2. Obtain the MKE 3 configuration file:
-
+  To migrate Calico to KDD from etcd:
+  1. Obtain the MKE 3 configuration file:
      ```shell
      export MKE_USERNAME=<mke-username>
      export MKE_PASSWORD=<mke-password>
@@ -145,25 +139,25 @@ Verify that you have the following components in place before you begin upgradin
      curl --silent --insecure -X GET "https://$MKE_HOST/api/ucp/config-toml" -H "accept: application/toml" -H "Authorization: Bearer $AUTHTOKEN" > mke-config.toml
      ```
 
-  3. In the `cluster_config` section of the MKE 3 configuration file, set the
-     `calico_kdd` parameter to `true`.
+  2. In the `cluster_config` section of the MKE 3 configuration file, check the setting of the `calico_kdd` parameter. If it is set to `true`, skip the remaining steps. Otherwise, edit the setting to `true`.
 
-  4. Apply the modified MKE 3 configuration file:
-
+  3. Apply the modified MKE 3 configuration file:
      ```shell
      $ curl --silent --insecure -X PUT -H "accept: application/toml" -H "Authorization: Bearer $AUTHTOKEN" --upload-file 'mke-config.toml' https://$MKE_HOST/api/ucp/config-toml
-     {"message":"Calico datastore migration from etcd to kdd successful"}
+     ```
+     On completion, the following confirmation displays:
+     ```shell
+       {"message":"Calico datastore upgrade from etcd to kdd successful"}
      ```
 
-{{< callout type="info" >}} The conversion of the Calico datastore from etcd to
-KDD typically takes about 20 seconds per node, depending on the size of the cluster. On
-completion, the following confirmation displays:
-
-```shell
-{"message":"Calico datastore upgrade from etcd to kdd successful"}
-```
-
-{{< /callout >}}
+  {{< callout type="important" >}}
+  - The conversion of the Calico datastore from etcd to
+  KDD typically takes about 20 seconds per node, depending on the size of the cluster.
+  - According to Tigera, the conversion to KDD freezes cluster networking, and thus new or replacement pods are not able to start. Existing workloads, however, continue to run and their network connectivity are not impacted. 
+  - The steps above must be completed as a standalone procedure before beginning the MKE4k upgrade process. The upgrade itself will be covered in the following sections.
+  - If your MKE 3 deployment uses an [unmanaged CNI](https://docs.mirantis.com/mke/current/ops/deploy-apps-k8s/install-cni-plugin.html), this upgrade path is not currently supported. 
+  - Support for unmanaged CNIs will be introduced in a future version of MKE.  In particular, Calico Enterprise employs Kubernetes as Calico Datastore, and thus the steps detailed herein are not required.
+  {{< /callout >}}
 
 ## Considerations
 
