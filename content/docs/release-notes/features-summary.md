@@ -3,9 +3,7 @@ title: Features Summary
 weight: 1
 ---
 
-The feature summary offers a high-level view of MKE 4k product functionality, as
-well as information on features that Mirantis is working to include in future
-releases of of the software.
+The feature summary offers a high-level view of MKE 4k product functionality.
 
 Available features
 ------------------
