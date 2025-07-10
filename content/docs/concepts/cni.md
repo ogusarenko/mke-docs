@@ -235,6 +235,10 @@ The network configuration generated as a result of upgrading to MKE 4k from an e
 
 
 {{< callout type="info" >}}
+- The following CIDR IP ranges must be disjointed from one another:
+   - Cluster CIDR range
+   - Service CIDR range
+   - CIDR range used by your cluster nodes' private IP address
 - MKE 4k uses a static port range for Kubernetes NodePorts, from  `32768` to `35535`. 
 - Following a successful MKE 3 to MKE 4k upgrade, a list displays that presents the ports that no longer need to be opened on manager or worker nodes. These ports can be blocked.
 {{< /callout >}}
