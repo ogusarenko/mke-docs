@@ -97,3 +97,7 @@ FTL Upgrade failed due to error: failed to run step [Install MKE 4 Components]: 
 **Workaround:**
 
 Following a successful rollback, attempt the upgrade again, with no changes to the `mkectl upgrade` command.
+
+## Custom TLS Certificate function is unavailable
+
+Customers cannot apply or manage custom TLS certficates.

@@ -23,7 +23,13 @@ The information herein is designed to guide you in setting up, maintaining, and 
 icon="cog" >}}
 {{< card link="node-feature-discovery" title="Node Feature Discovery (NFD)" icon="cog" >}}
 {{< card link="cloudproviders" title="Cloud Providers" icon="cog" >}}
+<!---
 {{< card link="tls-certificates" title="TLS certificates" icon="cog" >}}
+-->
 {{< card link="multus" title="Multus" icon="cog" >}}
 {{< card link="configuration-drift-detection" title="Configuration drift detection" icon="cog" >}}
 {{< /cards >}}
+
+<!---
+Grab the TLS certificates topic content from the PR in which it was removed when the feature is functional - https://github.com/Mirantis/mke-docs/pull/421
+-->
