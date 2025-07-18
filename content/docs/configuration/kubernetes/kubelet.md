@@ -12,6 +12,7 @@ kubelet for all cluster nodes through the `kubelet` section of the `mke4.yaml` c
 spec:
   kubelet:
     eventRecordQPS: 50
+    kubeletRootDir: /var/lib/kubelet
     maxPods: 110
     podPidsLimit: -1
     podsPerCore: 0
@@ -44,6 +45,18 @@ spec:
 You can also configure a kubelet with custom profiles. Such profiles offer
 greater control of the `KubeletConfiguration` and can be targeted to specific
 hosts.
+
+## kubelet root directory
+
+The kubelet root directory is a filesystem path that kubelet uses to store its data and to manage kubelet files, such as volume mounts.
+
+As with MKE 3, MKE 4k follows the upstream Kubernetes default for the kubelet root directory. It offers configuration around that default, though, to provide the option of using a different location. Be aware, though, of the attendant risks that come with setting a non-default location. For example, Kubernetes uses the device plugins Unix socket under host path `/var/lib/kubelet/device`, which is a fixed location that does not vary, even when the kubelet root directory is configured to a non-default location.
+
+{{< callout type="important" >}}
+
+For a managed CNI, if you are using an exact yaml specification, it is imperative that you specify the kubelet root directory location. Various other components may also require specification of the kubelet root directory location in their configuration, as well.
+
+{{< /callout >}}
 
 ## kubelet custom profiles
 
