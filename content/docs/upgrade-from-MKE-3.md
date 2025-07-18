@@ -297,7 +297,7 @@ the following flags to the `mkectl upgrade` command:
 In the event of an upgrade failure, the upgrade process rolls back,
 restoring the MKE 3 cluster to its original state.
 
-Example output:
+{{< details title="Example: Rollback output" closed="true" >}}
 
 ```shell
 WARN[0096] Initiating rollback because of upgrade failure. upgradeErr = aborting upgrade due to signal interrupt
@@ -352,6 +352,18 @@ INFO[0178] [Rollback Pre Upgrade Tasks] Completed
 INFO[0178] Rollback to MKE version 3.7.15 completed successfully ...
 FATA[0178] Upgrade failed due to error: aborting upgrade due to signal interrupt
 ```
+
+{{< /details >}}
+
+{{< callout type="info" >}}
+
+A failed upgrade can leave behind an empty or corrupted `~/.mke/mke.kubeconf` file, which will block any subsequent upgrade attempts. To resolve this issue, manually delete the file:
+```bash
+rm -f ~/.mke/mke.kubeconf
+```
+Following this action, during the next upgrade, the system will automatically generate a valid configuration.
+
+{{< /callout >}}
 
 ## Revert the upgrade
 
