@@ -8,9 +8,15 @@ and software requirements.
 
 ## Hardware requirements
 
-MKE 4k uses [k0s](https://k0sproject.io/) as the underlying Kubernetes
-distribution. To learn the k0s hardware requirements, refer to the [k0s
-documentation](https://docs.k0sproject.io/v1.29.4+k0s.0/system-requirements/).
+Although MKE 4k uses [k0s](https://k0sproject.io/) as the underlying Kubernetes distribution, the hardware requirements for MKE 4k differ from k0s due to the higher resource requirements of various enterprise-grade components the software uses.
+
+To ensure stability, optimal performance, and reliable upgrades, Mirantis performed extensive internal testing to determine the optimum hardware configuration for MKE 4k:
+
+- vCPUs: 8 vCPUs per node
+- RAM: 32 GB per node
+
+To compare, the same testing showed repeated upgrade failures for MKE 3 systems with 2 vCPUs and 8 GB of RAM.
+
 
 ## Software requirements
 
