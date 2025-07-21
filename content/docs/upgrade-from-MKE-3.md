@@ -61,7 +61,7 @@ Following a successful upgrade:
 
 {{< callout type="warning" >}}
 
-Your MKE 3 system will be completely unavailable during the upgrade process. Cluster access will be restored only once the upgrade is complete. 
+Your MKE 3 system will be completely unavailable during the upgrade process. Cluster access will be restored only once the upgrade is complete.
 
 {{< /callout >}}
 
@@ -71,21 +71,11 @@ logs on the current state of upgrade.
 
 ## Prerequisites
 
-Verify that you have the following components in place before you begin upgrading MKE 3 to MKE 4:
+{{< callout type="warning" >}}
 
-- An MKE cluster running the latest 3.7.x or 3.8.x release:
+You must be running MKE 3.7.15+ or any 3.8.x version. We recommend upgrading to the latest 3.7.x or 3.8.x release before proceeding to upgrade to MKE 4.
 
-  ```shell
-  kubectl get nodes
-  ```
-
-  ```shell
-  NAME                                           STATUS   ROLES    AGE     VERSION
-  ip-172-31-103-202.us-west-2.compute.internal   Ready    master   7m3s    v1.27.7-mirantis-1
-  ip-172-31-104-233.us-west-2.compute.internal   Ready    master   7m3s    v1.27.7-mirantis-1
-  ip-172-31-191-216.us-west-2.compute.internal   Ready    <none>   6m59s   v1.27.7-mirantis-1
-  ip-172-31-199-207.us-west-2.compute.internal   Ready    master   8m4s    v1.27.7-mirantis-1
-  ```
+{{< /callout >}}
 
 - A backup of the MKE cluster. For comprehensive instruction on how to create
   an MKE 3 back up, refer to [Back up MKE](https://docs.mirantis.com/mke/current/ops/disaster-recovery/back-up-mke.html).
@@ -102,14 +92,19 @@ Verify that you have the following components in place before you begin upgradin
   Version: v4.1.0
   ```
 
-- A `hosts.yaml` file, to provide the information required by `mkectl` to
-  connect to each node with SSH.
+- Prepare your hosts.yaml file (see example below) before beginning the upgrade.
+{{< callout type="warning" >}}
 
-  Example `hosts.yaml` file:
+Ensure all nodes are accessible via SSH using the specified credentials.
 
-  ```shell
-  cat hosts.yaml
-  ```
+Use either external IP addresses or FQDNs, whichever you provide must be resolvable and reachable from the system running `mkectl`.  Load balancer is recommended for high-availability setups. For details,
+see [System requirements: Load balancer
+requirements](../getting-started/system-requirements#load-balancer-requirements).
+
+
+Node roles (manager/worker) are automatically detected during migration and do not need to be declared in the file.
+
+{{< /callout >}}
 
   ```shell
   hosts:
@@ -153,9 +148,9 @@ Verify that you have the following components in place before you begin upgradin
   {{< callout type="important" >}}
   - The conversion of the Calico datastore from etcd to
   KDD typically takes about 20 seconds per node, depending on the size of the cluster.
-  - According to Tigera, the conversion to KDD freezes cluster networking, and thus new or replacement pods are not able to start. Existing workloads, however, continue to run and their network connectivity are not impacted. 
+  - According to Tigera, the conversion to KDD freezes cluster networking, and thus new or replacement pods are not able to start. Existing workloads, however, continue to run and their network connectivity are not impacted.
   - The steps above must be completed as a standalone procedure before beginning the MKE4k upgrade process. The upgrade itself will be covered in the following sections.
-  - If your MKE 3 deployment uses an [unmanaged CNI](https://docs.mirantis.com/mke/current/ops/deploy-apps-k8s/install-cni-plugin.html), this upgrade path is not currently supported. 
+  - If your MKE 3 deployment uses an [unmanaged CNI](https://docs.mirantis.com/mke/current/ops/deploy-apps-k8s/install-cni-plugin.html), this upgrade path is not currently supported.
   - Support for unmanaged CNIs will be introduced in a future version of MKE.  In particular, Calico Enterprise employs Kubernetes as Calico Datastore, and thus the steps detailed herein are not required.
   {{< /callout >}}
 
@@ -244,29 +239,70 @@ mkectl upgrade --hosts-path <path-to-hosts-yaml> \
   --config-out <path-to-desired-file-location>
 ```
 
-The external address is the domain name of the load balancer. For details,
-see [System requirements: Load balancer
-requirements](../getting-started/system-requirements#load-balancer-requirements).
+As mentioned in Prerequisites,  `external-address` must be resolvable and reachable from the system running `mkectl`.
 
 The `--config-out` flag allows you to specify a path where the MKE 4k configuration
 file will be automatically created and saved during upgrade. If not specified,
 the configuration file prints to your console on completion. In this case, save
 the output to a file for future reference
 
-The upgrade process requires time to complete. Once the process is complete,
-run the following command to verify that the MKE 4k cluster is operating:
+## Post-Upgrade Verification and Access
 
-```shell
-sudo k0s kc get nodes
+Based on controlled testing in AWS environments, we observed these typical upgrade durations:
+ - AWS, Ubuntu 22.04 LTS
+ - Manager and worker nodes: m5.2xlarge (8 vCPU, 32GB RAM)
+ - 5-node cluster (3 managers, 2 workers): 10:19.87 minutes
+ - 10-node cluster (3 managers, 7 workers): 11:26.64 minutes
+
+Actual upgrade duration varies based on hardware performance (CPU/memory/disk), workload density, network throughput, and storage backend performance.  Treat these estimates as general guidance only, and for precise planning we strongly recommend performing a test upgrade in a staging environment that mirrors your production specifications.
+
+Upon ``mkectl upgrade`` completion, a kubeconfig file for the default admin user is generated and stored at `~/.mke/mke.kubeconf`
+
+Set `KUBECONFIG` environment variable.  (You may use other methods to manage your kubeconfig files.)
+```bash
+export KUBECONFIG=~/.mke/mke.kubeconf
 ```
 
-Example output:
+Once the process is complete, run the following commands to verify that the MKE 4k cluster node readiness, cluster health and workload status:
 
-```shell
-NAME                                           STATUS   ROLES           AGE   VERSION
-ip-172-31-111-4.us-west-1.compute.internal     Ready    control-plane   45h   v1.31.2+k0s
-ip-172-31-216-253.us-west-1.compute.internal   Ready    <none>          45h   v1.31.2+k0s
-```
+1. Check node readiness
+
+   ```bash
+   kubectl get nodes
+   ```
+   Healthy nodes should show `STATUS=Ready`.
+   ```bash
+   kubectl describe node <node-name> | grep -i conditions: -A 10
+   ```
+   Check for conditions:
+   - `Ready=True`
+   - `MemoryPressure/NetworkUnavailable/DiskPressure=False`
+
+2. Verify workload status
+
+   ```bash
+   kubectl get pods --all-namespaces
+   ```
+   Check columns for `STATUS=Running` and `READY`
+
+   ```bash
+   kubectl get deployments,statefulsets --all-namespaces
+   ```
+   Ensure `AVAILABLE` matches `DESIRED` replicas.
+
+3. Review logs
+
+   ```bash
+   kubectl get pods -n mke                # MKE namespace is mke
+   kubectl logs <pod-name> -n mke         # Check logs for mke system pods
+   kubectl logs <pod-name> -n <namespace> # Or any other application pods
+   ```
+
+4. Monitor cluster health
+
+   ```bash
+   kubectl top nodes # Resource usage
+   kubectl top pods -A
 
 {{< callout type="info" >}}
 
