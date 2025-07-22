@@ -18,6 +18,6 @@ CNI plugins that MKE 4k currently supports include:
 
 MKE 4k supports upgrades from MKE 3 clusters that are using Calico OSS or an
 unmanaged CNI. For more information, refer to [Upgrade from MKE 3.7 or
-3.8](../../upgrade-from-mke-3).
+3.8](../../upgrade-from-mke-3x).
 
 {{< /callout >}}

@@ -11,4 +11,4 @@ Network Interfaces before deploying a CNI plugin.
 - Only clusters that use the default Kubernetes proxier `iptables` can be
   upgraded from MKE 3 to MKE 4k.
 - Only KDD-backed MKE 3 clusters can be upgraded to MKE 4k. Refer to [Upgrade
-  from MKE 3.7 or 3.8](../../../upgrade-from-mke-3) for more information.
+  from MKE 3.7 or 3.8](../../../upgrade-from-mke-3x) for more information.
