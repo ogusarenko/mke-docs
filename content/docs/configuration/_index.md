@@ -27,7 +27,8 @@ icon="cog" >}}
 {{< card link="tls-certificates" title="TLS certificates" icon="cog" >}}
 -->
 {{< card link="multus" title="Multus" icon="cog" >}}
-{{< card link="configuration-drift-detection" title="Configuration drift detection" icon="cog" >}}
+{{< card link="configuration-drift-detection" title="Configuration Drift Detection" icon="cog" >}}
+{{< card link="container-network-interface" title="Container Network Interface" icon="cog" >}}
 {{< /cards >}}
 
 <!---

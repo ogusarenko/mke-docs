@@ -33,9 +33,8 @@ MKE 4k supports Container Network Interface (CNI) plugins. Such components
 provide networking functionality within a cluster that is secure, scalable, and
 policy-driven.
 
-MKE 4k installs with the Calico CNI by default. Other CNI options, though, such
-as Kube-router, are also available. Refer to [Container Network
-Interface](../cni) for the network configuration details.
+MKE 4k installs with the Calico CNI by default. Other CNI options, though, are also available. Refer to [Container Network
+Interface](../../configuration/container-network-interface) for the network configuration details.
 
 ### MKE 4k Control Plane
 
