@@ -81,7 +81,7 @@ registry from which to pull the MKE 4k images and charts.
 
 For information on performing an upgrade to an existing MKE 3 installation in an
 airgap environment, refer to [Offline
-upgrade](../../upgrade-from-mke-3x/#offline-upgrade).
+upgrade](../../upgrade-from-mke-3x/perform-migration#offline-upgrade).
 
 {{< /callout >}}
 
