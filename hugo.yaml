@@ -2,7 +2,6 @@
 baseURL: "https://mirantis.github.io/mke-docs"
 title: "Mirantis Kubernetes Engine 4k"
 theme: hextra
-pluralizelisttitles: false
 
 # enableRobotsTXT: true
 enableGitInfo: true
@@ -31,15 +30,15 @@ menu:
   main:
     - identifier: docs
       name: Docs
-      pageRef: /docs/latest
+      pageRef: /docs
       weight: 1
     - identifier: getting-started
       name: Getting started
-      pageRef: /docs/latest/getting-started
+      pageRef: /docs/getting-started
       weight: 2
     - identifier: tutorials
       name: Tutorials
-      pageRef: /docs/latest/tutorials
+      pageRef: /docs/tutorials
       weight: 3
     - name: Search
       weight: 5
@@ -72,7 +71,6 @@ params:
     navbarPosition: "left"
     displayTitle: true
     displayLogo: true
-    displayDropdown: true
     logo:
       path: images/logo.svg
       dark: images/logo-dark.svg
