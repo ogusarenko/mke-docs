@@ -101,8 +101,8 @@ provider types, refer to:
   - backup to NFS storage
   - backup to local disks
 
-- Backups must currently be restored in the same cluster in which the backup
-  was taken. As such, you cannot restore a backup to a new set of nodes.
+- Restoration Scope: Backups can only be restored to the same cluster where they
+  were originally created. Restoring to a new set of nodes is not supported.
 
-- Backups must be downloaded and uploaded from the in-cluster storage provider
-  using the MinIO Console, as the CLI does not currently support these actions.
+- Backup Transfer: Backups must be manually downloaded and uploaded via the MinIO
+  Console UI (accessible at <mke_url>/minio/). This functionality is not yet available through the CLI.
