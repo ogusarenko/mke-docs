@@ -25,12 +25,12 @@ and automate workflows.
 
 ### Obtain and apply an MKE 4k License
 
-You must [have a valid license to lawfully run MKE 4k](licensing-mke4k).
+You must [have a valid license to lawfully run MKE 4k](licensing-mke4).
 
 {{< callout type="info" >}} Mirantis recommends that you set the license in the
 MKE 4k configuration file prior to the creation of your MKE 4k cluster. You can, however, [apply the
 license following cluster creation using the MKE 4k web
-UI](licensing-mke4k/apply-mke4k-license-post-installation).
+UI](licensing-mke4/apply-mke4k-license-post-installation).
 {{< /callout >}}
 
 ### Create a cluster
