@@ -127,16 +127,16 @@ method that was used to install the plugin.
     
     ```yaml
     apiVersion: troubleshoot.sh/v1beta2
-     kind: SupportBundle
-     metadata:
-       name: sample
-     spec:
-       collectors:
-         - logs:
-             selector:
-               - control-plane=controller-manager
-             namespace: mke
-             name: logs/mke
+    kind: SupportBundle
+    metadata:
+      name: sample
+    spec:
+      collectors:
+        - logs:
+            selector:
+              - control-plane=controller-manager
+            namespace: mke
+            name: logs/mke
     ```
 
 2. Generate the support bundle:
