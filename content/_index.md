@@ -18,7 +18,7 @@ layout: hextra-home
 {{< hextra/hero-button
   text="Get Started"
   style="background-color: #214666;"
-  link="/mke-docs/docs/getting-started/" >}}
+  link="/mke-docs/latest/getting-started/" >}}
 
 <div class="hx-mt-12"></div>
 

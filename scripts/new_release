@@ -1,0 +1,142 @@
+#!/bin/bash
+
+set -e
+
+# Displays usage information and exits.
+usage() {
+  echo "Usage: $0 <version>"
+  echo ""
+  echo "This does the following for a release:"
+  echo "- Creates a new release directory based on the 'dev' content directory"
+  echo "- Removes 'latest' and 'docs' aliases from the previous release."
+  echo "- Adds '/latest/' and '/docs/' aliases to all Markdown files in the new version directory."
+  echo ""
+  echo "After running this script, changes should be looked over before opening a PR"
+  echo "Once the PR is merged, the commit should be tagged the same as the name of the release"
+  echo ""
+  echo "Example: $0 1.2.3"
+  exit 1
+}
+
+# Ensures the script is not being run on the 'main' branch.
+check_branch() {
+  local current_branch
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+  if [ "$current_branch" == "main" ]; then
+    echo "Error: This script shoudl not be ran on the 'main' branch."
+    echo "Please create a release branch first:"
+    echo "  git checkout -b release/$VERSION"
+    exit 1
+  fi
+}
+
+# Validates that only one parameter is passed.
+validate_parameters() {
+  if [ "$#" -ne 1 ]; then
+    echo "Error: Exactly one parameter (the version) must be provided."
+    usage
+  fi
+}
+
+# Checks if a version directory already exists and prompts the user to recreate it.
+# Exits if the user declines.
+check_existing_version() {
+  local version=$1
+  if [ -d "content/$version" ]; then
+    read -p "Version $version already exists. Do you want to recreate it? (y/n) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      echo "Removing existing version..."
+      rm -rf "content/$version"
+    else
+      echo "Exiting."
+      exit 0
+    fi
+  fi
+}
+
+# Removes 'latest' and 'docs' aliases from the previously latest release.
+remove_latest_aliases() {
+  echo "Removing 'latest' and 'docs' aliases from the previous release..."
+  local previous_latest
+  previous_latest=$(ls content | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1)
+  if [ -n "$previous_latest" ]; then
+    find "content/$previous_latest" -name "*.md" | while read -r file; do
+      sed -i '' '/\/latest\//d' "$file"
+      sed -i '' '/\/docs\//d' "$file"
+      sed -i '' '/^aliases:/d' "$file"
+      sed -i '' '/^- \/latest\//d' "$file"
+      sed -i '' '/^- \/docs\//d' "$file"
+    done
+    echo "Removed 'latest' and 'docs' aliases from version $previous_latest."
+  else
+    echo "No previous release found to remove 'latest' or 'docs' aliases."
+  fi
+}
+
+# Creates the new release directory by copying the 'dev' content.
+create_release() {
+  local version=$1
+  echo "Creating new release version $version"
+  echo "Creating new release directory..."
+  cp -r content/dev "content/$version"
+
+  # Update the title in the _index.md of the new release directory
+  sed -i '' "s/^title: .*/title: $version/" "content/$version/_index.md"
+}
+
+# Adds '/latest/' and '/docs/' aliases to all Markdown files in the new version directory.
+add_latest_aliases() {
+  local version=$1
+  echo "Adding 'latest' and 'docs' aliases to release..."
+  find "content/$version" -name "*.md" | while read -r file; do
+    local path
+    path=${file#content\/$version\/}
+    path=${path%*.md}
+    if [[ "$(basename "$path")" == "_index" || "$(basename "$path")" == "index" ]]; then
+      path=$(dirname "$path")
+      if [[ "$path" == "." ]]; then
+        path=""
+      fi
+    fi
+
+    if [[ -n "$path" && "${path: -1}" != "/" ]]; then
+      path="$path/"
+    fi
+
+    local latest_alias="/latest/$path"
+    local docs_alias="/docs/$path"
+
+    if grep -q "^aliases:" "$file"; then
+      sed -i '' "/^aliases:/a\\
+\ \ - $latest_alias\\
+\ \ - $docs_alias" "$file"
+    else
+      sed -i '' "2i\\
+aliases:\\
+\ \ - $latest_alias\\
+\ \ - $docs_alias
+" "$file"
+    fi
+  done
+}
+
+# Main function to orchestrate the release process.
+main() {
+  check_branch
+  validate_parameters "$@"
+
+  local version=$1
+
+  check_existing_version "$version"
+  remove_latest_aliases
+  create_release "$version"
+  add_latest_aliases "$version"
+  echo "Added 'latest' and 'docs' aliases to version $version."
+
+  echo "Done."
+  echo ""
+  echo "A tag for the new ${version} should be added once the PR is merged into main"
+}
+
+main "$@"
