@@ -48,9 +48,4 @@ layout: hextra-home
     subtitle="World-class enterprise support, with your choice of 24/7 proactive support or managed services."
   >}}
 
-  {{< hextra/feature-card
-    title="Upgrade from MKE 3.7 and 3.8"
-    subtitle="Existing MKE 3.7/3.8 users can easily upgrade in place to MKE 4k without any downtime. MKE 4k has feature parity with MKE 3.7/3.8, plus additional capabilities"
-  >}}
-
 {{< /hextra/feature-grid >}}
