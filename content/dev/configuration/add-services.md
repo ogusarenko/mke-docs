@@ -23,5 +23,18 @@ services:
      namespace: ingress
 ```
 
-To learn more about the services sanctioned by k0rdent, refer to the [k0rdent
+{{< callout type="important" >}}
+
+You must manually create all of the service templates before you apply the
+configuration. To confirm that service templates exist in the MKE 4k cluster and
+that they are valid for all added services:
+
+```
+kubectl get servicetemplates -A
+```
+
+{{< /callout >}}
+
+To learn more about the services sanctioned by k0rdent and to find
+instructions on how to create service templates, refer to the [k0rdent
 catalog](https://catalog.k0rdent.io/latest/).
