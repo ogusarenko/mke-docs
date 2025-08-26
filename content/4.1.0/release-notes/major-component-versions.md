@@ -2,7 +2,7 @@
 aliases:
   - /latest/release-notes/4.1.0/major-component-versions/
   - /docs/release-notes/4.1.0/major-component-versions/
-title: Middleware component versions
+title: Major component versions
 weight: 5
 ---
 
