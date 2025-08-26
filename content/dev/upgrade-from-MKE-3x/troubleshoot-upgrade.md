@@ -1,6 +1,6 @@
 ---
 title: Troubleshoot the Upgrade
-weight: 9
+weight: 10
 ---
 
 You can address various potential MKE upgrade issues using the tips and
