@@ -14,8 +14,14 @@ Ingress Controller, which manages ingress traffic using the [Kubernetes
 Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 rules.
 
-NGINX Ingress Controller is the only one ingress controller that MKE 4k
-currently supports.
+{{< callout type="info" >}}
+
+NGINX Ingress Controller is the only ingress controller that MKE 4k currently
+supports. Consequently, MKE 4k does not support upgrades from MKE 3 clusters
+that use a BYO (Bring Your Own) NGINX ingress controller. Upgrade support is
+limited to the default MKE 3 ingress controller.
+
+{{< /callout >}}
 
 ## Configuration
 
