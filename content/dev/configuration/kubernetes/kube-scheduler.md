@@ -1,6 +1,6 @@
 ---
 title: kube-scheduler
-weight: 5
+weight: 6
 ---
 
 The Kubernetes scheduler is a control plane process that assigns pods to nodes.

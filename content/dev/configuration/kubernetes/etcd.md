@@ -1,6 +1,6 @@
 ---
 title: etcd
-weight: 6
+weight: 7
 ---
 
 etcd is a consistent, distributed key-value store that provides a reliable way to store data that needs to be accessed by a distributed system or cluster of machines. It handles leader elections during network partitions and can tolerate machine failure, even in the leader node.

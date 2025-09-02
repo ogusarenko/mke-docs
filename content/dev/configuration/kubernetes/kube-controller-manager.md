@@ -1,6 +1,6 @@
 ---
 title: kube-controller-manager
-weight: 4
+weight: 5
 ---
 
 The Kubernetes controller manager is a daemon that embeds the core control
