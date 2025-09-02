@@ -97,6 +97,31 @@ how to create an `mke4.yaml` configuration file.
    | `.spec.registries.chartRegistry.caData` | 	PEM encoded certificate of the Certificate Authority that issued chart registry TLS certificates. Optional. Must be provided if registry is using TLS certs issued by a non-publicly trusted CA.                                                                                                                                                                                                                                                                                |
    | `.spec.airgap.enabled = true`           | Indicates that your environment is airgapped.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
+   Example:
+
+   ```
+   spec:
+     airgap:
+       enabled: true
+     registries:
+       chartRegistry:
+         url: oci://private-registry.example.com:8080/mke
+         caData: |-
+           -----BEGIN CERTIFICATE-----
+           MIIFejCCA2KgAwIBAgIUGUBk1RMNa2X/dijEzY0OwxnuFHowDQYJKoZIhvcNAQEL
+           ...
+           2+yWdp5K3LBV/+OtCEA=
+           -----END CERTIFICATE-----
+       imageRegistry:
+         url: private-registry.example.com:8080/mke
+         caData: |-
+           -----BEGIN CERTIFICATE-----
+           MIIFejCCA2KgAwIBAgIUGUBk1RMNa2X/dijEzY0OwxnuFHowDQYJKoZIhvcNAQEL
+           ...
+           2+yWdp5K3LBV/+OtCEA=
+           -----END CERTIFICATE-----
+   ```
+
 3. Run the `mkectl apply` command.
 
 ## MKE 4k versus MKE 3 ##
