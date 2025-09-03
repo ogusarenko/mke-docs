@@ -36,10 +36,12 @@ authentication protocol, set its `enabled` configuration option to `true`.
 
 ```yaml
 authentication:
+  expiry: {}
   ldap:
     enabled: false
   oidc:
     enabled: false
+  replicaCount: 1
   saml:
     enabled: false
 ```
@@ -69,6 +71,27 @@ The following table shows all of the available fields for the `expiry` section.
 | `expiry.refreshTokens.disableRotation`   | Disable every-request rotation.                                          |
 | `expiry.refreshTokens.reuseInterval`     | Interval for obtaining the same refresh token from the refresh endpoint. |
 
+
+## Configure OAuth2
+
+You can use the ``mke4k.yaml`` configuration file to configure the Dex
+``oauth2`` fields.
+
+Example configuration:
+
+```yaml
+authentication:
+    oauth2:
+      responseTypes: [ "code" ]
+      skipApprovalScreen: true
+      alwaysShowLoginScreen: false
+```
+
+| Field 	| Description 	|
+|---	|---	|
+| ``responseTypes`` 	| Use to configure the desired auth flow based on different values: <br><br> ``code`` --> Authorization Code Flow<br> ``id_token`` --> Implicit Flow<br> ``id_token token`` --> Implicit Flow<br> ``code id_token`` --> Hybrid Flow<br> ``code token`` --> Hybrid Flow<br> ``code id_token token`` --> Hybrid Flow 	|
+| ``skipApprovalScreen`` 	| Set to ``true`` to require users to approve sharing data with the connected application on every login. 	|
+| ``alwaysShowLoginScreen`` 	| Set to ``true`` to always show the login page, even when only one authentication type is configured. 	|
 
 ## Add Third-Party Client Applications
 
