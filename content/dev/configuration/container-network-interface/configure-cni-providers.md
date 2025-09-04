@@ -1,6 +1,6 @@
 ---
 title: Configure CNI Providers
-weight: 4
+weight: 5
 ---
 
 Information is provided herein on how to configure the Container Network

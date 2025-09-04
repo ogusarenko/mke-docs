@@ -7,16 +7,16 @@ Being able to correctly configure and customize Container Network Interface
 (CNI) plugins is essential for setting up a reliable and scalable MKE 4k
 environment.
 
+Currently, MKE 4k directly supports the [Calico
+OSS](configure-cni-providers#calico-oss) CNI plugin.
+
+You can configure other CNI solutions for use with MKE 4k. Be aware, though,
+that Mirantis offers only [limited basic instruction for how to configure
+unmanaged CNIs for use with MKE 4k](unmanaged-cni). Thus, for detailed
+information on whichever unmanaged CNI plugins you intend to deploy, you must
+refer to the product documentation or support service.
+
 {{< callout type="warning" >}}
 To switch to a different CNI following initial CNI installation, you must first
 reset your MKE 4k cluster.
-{{< /callout >}}
-
-MKE 4k currently supports the following CNI plugins:
-
-- [Calico OSS](configure-cni-providers#calico-oss)
-
-{{< callout type="important" >}}
-Calico OSS is the only CNI that is supported for migrating configuration during
-an MKE 3 to MKE 4k upgrade.
 {{< /callout >}}

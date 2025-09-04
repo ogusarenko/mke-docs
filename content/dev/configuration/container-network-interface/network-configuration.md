@@ -1,6 +1,6 @@
 ---
 title: Network Configuration
-weight: 2
+weight: 4
 ---
 
 The following table includes details on all of the configurable `network` fields.
