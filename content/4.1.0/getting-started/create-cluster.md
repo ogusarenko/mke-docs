@@ -97,3 +97,15 @@ not be able to manage the cluster until the kubeconfig is restored.
 
 Once the new cluster is viable, you can start interacting with it using
 `kubectl` with the `mke` context.
+
+{{< callout type="warning" >}}
+
+Always deploy an odd number of managers.
+
+MKE 4k embeds an etcd cluster across manager (controller) nodes, and with two
+managers any single failure will break quorum. Refer to the
+the etcd FAQ, [Why an odd number of cluster
+members?](https://etcd.io/docs/v3.5/faq/#why-an-odd-number-of-cluster-member),
+for more information.
+
+{{< /callout >}}
