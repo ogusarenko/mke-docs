@@ -4,7 +4,8 @@ weight: 1
 ---
 
 MKE 4k supports backup and restoration of cluster data through the use of the
-[Velero](https://velero.io/) add-on. System backup is enabled by default.
+[Velero](https://velero.io/) add-on. System backup is enabled by default. In
+addition, MKE 4k also supports [etcd backups through the CLI](backup-etcd).
 
 ## Backup configuration
 
