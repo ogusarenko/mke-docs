@@ -111,6 +111,14 @@
             {{- partial "utils/icon.html" (dict "name" .Params.icon "attributes" "height=24") -}}
             <span class="hx-sr-only">{{ or (T .Identifier) .Name | safeHTML }}</span>
           </a>
+        {{- else if .Params.path -}}
+          {{- $iconPath := .Params.path -}}
+          {{- $iconDarkPath := .Params.dark | default $iconPath -}}
+          <a class="hx-p-2 hx-text-current" {{ if $external }}target="_blank" rel="noreferrer"{{ end }} href="{{ $link }}" title="{{ or (T .Identifier) .Name | safeHTML }}">
+            <img src="{{ $iconPath | relURL }}" class="hx-block dark:hx-hidden" style="padding: 20%" alt="{{ or (T .Identifier) .Name | safeHTML }}" />
+            <img src="{{ $iconDarkPath | relURL }}" class="hx-hidden dark:hx-block"  style="padding:20%" alt="{{ or (T .Identifier) .Name | safeHTML }}" />
+            <span class="hx-sr-only">{{ or (T .Identifier) .Name | safeHTML }}</span>
+          </a>
         {{- else -}}
           {{- $active := or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .) -}}
           {{- $activeClass := cond $active "hx-font-medium" "hx-text-gray-600 hover:hx-text-gray-800 dark:hx-text-gray-400 dark:hover:hx-text-gray-200" -}}

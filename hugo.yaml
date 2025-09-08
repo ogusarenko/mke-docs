@@ -44,11 +44,17 @@ menu:
       weight: 5
       params:
         type: search
-    - name: GitHub
+    # - name: GitHub
+    #   weight: 6
+    #   url: "https://github.com/Mirantis/mke-docs"
+    #   params:
+    #     icon: github
+    - name: Mirantis products
       weight: 6
-      url: "https://github.com/Mirantis/mke-docs"
+      url: "https://www.mirantis.com/"
       params:
-        icon: github
+        path: images/mirantis-logo-two-color.svg
+        dark: images/mirantis-logo-inverted-two-color.svg
 
   sidebar:
     - identifier: more
