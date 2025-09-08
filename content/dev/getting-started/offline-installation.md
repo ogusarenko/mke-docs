@@ -27,15 +27,22 @@ registry from which to pull the MKE 4k images and charts.
 
      ```bash
      MKE_VERSION="4.1.0"
-     DOWNLOAD_URL="https://packages.mirantis.com/caas/mke_bundle_v${MKE_VERSION}.tar.gz"
-     BUNDLE_NAME="mke_bundle_v${MKE_VERSION}.tar.gz"
+     DOWNLOAD_URL="https://packages.mirantis.com/caas/mke_bundle_v${MKE_VERSION}_amd64.tar.gz"
+     BUNDLE_NAME="mke_bundle_v${MKE_VERSION}_amd64.tar.gz"
 
      curl -L "$DOWNLOAD_URL" -o "$BUNDLE_NAME"
      ```
 
-2. Transfer the bundle file to a machine that can access your private registry.
+2. Verify the checksum of the bundle to confirm the download:
 
-3. On the machine with registry access, set the environment variables:
+    ```
+    curl -L https://github.com/MirantisContainers/mke-release/releases/download/v${MKE_VERSION}/mke_bundle_v${MKE_VERSION}_amd64_checksum.txt -o "$BUNDLE_NAME.sha256"
+    sha256sum -c "$BUNDLE_NAME.sha256"
+    ```
+
+3. Transfer the bundle file to a machine that can access your private registry.
+
+4. On the machine with registry access, set the environment variables:
 
    ```bash
    MKE_VERSION="4.1.0"
@@ -43,18 +50,18 @@ registry from which to pull the MKE 4k images and charts.
    export REGISTRY_PROJECT_PATH='<registry-path>'
    export REGISTRY_USERNAME='<username>'
    export REGISTRY_PASSWORD='<password>'
-   export BUNDLE_NAME="mke_bundle_v${MKE_VERSION}.tar.gz"
+   export BUNDLE_NAME="mke_bundle_v${MKE_VERSION}_amd64.tar.gz"
    ```
 
-| Environment variable                             | Description                                                                                                                                                                                                                                                                                 |
-|--------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| REGISTRY_ADDRESS       | Registry hostname (required) and port (optional). The value must not end with a slash '/'.<br><br>Example: `private-registry.example.com:8080`                                                                                                                                              |
-| REGISTRY_PROJECT_PATH        | Path to the registry project that will store all MKE 4k artifacts. The registry address and path should comprise the full registry path. The value must not end with a slash '/'.<br><br>Example: `REGISTRY_ADDRESS + '/' + REGISTRY_PROJECT_PATH == 'private-registry.example.com:8080/mke` |
-| REGISTRY_USERNAME                | Username for the account that is allowed to push.                                                                                                                                                                                                                                           |
-| REGISTRY_PASSWORD        | Password for the account that is allowed to push.                                                                                                                                                                                                                                           |
-| BUNDLE_NAME| The name of previously downloaded bundle file, which must be located in the same directory in which you run the preparation steps.                                                                                                                                                          |
+   | Environment variable                             | Description                                                                                                                                                                                                                                                                                 |
+   |--------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   | REGISTRY_ADDRESS       | Registry hostname (required) and port (optional). The value must not end with a slash '/'.<br><br>Example: `private-registry.example.com:8080`                                                                                                                                              |
+   | REGISTRY_PROJECT_PATH        | Path to the registry project that will store all MKE 4k artifacts. The registry address and path should comprise the full registry path. The value must not end with a slash '/'.<br><br>Example: `REGISTRY_ADDRESS + '/' + REGISTRY_PROJECT_PATH == 'private-registry.example.com:8080/mke` |
+   | REGISTRY_USERNAME                | Username for the account that is allowed to push.                                                                                                                                                                                                                                           |
+   | REGISTRY_PASSWORD        | Password for the account that is allowed to push.                                                                                                                                                                                                                                           |
+   | BUNDLE_NAME| The name of previously downloaded bundle file, which must be located in the same directory in which you run the preparation steps.                                                                                                                                                          |
 
-4. Upload the MKE 4k images and helm charts to your private registry:
+5. Upload the MKE 4k images and helm charts to your private registry:
 
    ```bash
    # Login to the registry
@@ -64,7 +71,7 @@ registry from which to pull the MKE 4k images and charts.
    tar -xzf "$BUNDLE_NAME" -C ./
 
    # Iterate over bundle artifacts and upload each one using skopeo
-   for archive in $(find ./bundle -print | grep ".tar"); do
+   for archive in $(find ./bundles -print | grep ".tar"); do
      # Form the image name from the archive name
      img=$(basename "$archive" | sed 's~\.tar~~' | tr '&' '/' | tr '@' ':');
 
