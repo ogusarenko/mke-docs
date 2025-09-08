@@ -131,6 +131,46 @@ how to create an `mke4.yaml` configuration file.
 
 3. Run the `mkectl apply` command.
 
+## Upgrade
+
+To upgrade MKE 4k in an airgap environment:
+
+1. [Prepare](#preparation) the new MKE 4k version.
+
+2. Obtain the pertinent release matrix from the offline bundle, or download it
+   from the [official release
+   matrix](https://raw.githubusercontent.com/MirantisContainers/mke-release/refs/heads/main/release-matrix/release-matrix.json).
+
+   {{< callout type=warning >}}
+
+   Do not modify the release matrix. Mirantis does not support release matrixes
+   that have been modified.
+
+   {{< /callout >}}
+
+3. Verify that you have the latest version of the mkectl binary. For
+   information on how to download and install mkectl, refer to [Install the MKE
+   4k CLI](../../getting-started/install-MKE-4k-CLI).
+
+4. [Back up etcd](../../configuration/backup-restore/backup-etcd) prior to
+   initiating the upgrade.
+
+   {{< callout type=info >}}
+
+   If you do not provide a path to an etcd backup as part of the
+   ``mkectl upgrade`` command, mkectl automatically generates a pre-upgrade
+   backup prior to initiating the upgrade.
+
+   {{< /callout >}}
+
+5. Run the upgrade.
+
+   ```
+   mkectl upgrade --upgrade-version <version_to_upgrade_to> --etcd-snapshot-path
+   <path_to_pre-upgrade_snapshot> --release-matrix <path_to_release_matrix>
+   ```
+
+
 ## MKE 4k versus MKE 3 ##
 
 MKE 3 requires the use of the `docker load` command to load offline bundles
