@@ -1,6 +1,6 @@
 ---
 title: Uninstall a cluster
-weight: 8
+weight: 10
 ---
 
 1. Destroy the last MKE 4k cluster you created using the `reset` command:
