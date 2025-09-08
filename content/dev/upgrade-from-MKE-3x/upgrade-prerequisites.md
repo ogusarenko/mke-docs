@@ -90,3 +90,13 @@ upgrading MKE 3 to MKE 4k:
   - If your MKE 3 deployment uses an [unmanaged CNI](https://docs.mirantis.com/mke/current/ops/deploy-apps-k8s/install-cni-plugin.html), this upgrade path is not currently supported.
   - Support for unmanaged CNIs will be introduced in a future version of MKE.  In particular, Calico Enterprise employs Kubernetes as Calico Datastore, and thus the steps detailed herein are not required.
   {{< /callout >}}
+
+- k0rdent is not enabled when you upgrade from MKE 3 to MKE 4k. If
+  you would like to enable it following the upgrade process, set
+  ``k0rdent.enabled`` to ``true`` in the ``MKE4.yaml`` configuration file.
+
+  ```yaml
+  spec:
+  k0rdent:
+    enabled: true
+  ```
