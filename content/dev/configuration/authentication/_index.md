@@ -71,6 +71,30 @@ The following table shows all of the available fields for the `expiry` section.
 | `expiry.refreshTokens.disableRotation`   | Disable every-request rotation.                                          |
 | `expiry.refreshTokens.reuseInterval`     | Interval for obtaining the same refresh token from the refresh endpoint. |
 
+## Configure Dex for High Availability
+
+You can adjust the following parameters in the ``mke4.yaml`` configuration file
+to set MKE 4k to run in High Availability (HA) mode:
+
+| Dex Helm chart field 	| Description 	|
+|---	|---	|
+| ``replicaCount`` 	| Determines the number of Dex Pod instances.<br><br>Default: ``1`` 	|
+| ``topologySpreadConstraints`` 	| Defines a method of choosing the nodes that
+a Pod should run on. 	|
+
+```yaml
+authentication:
+  replicaCount: 3
+  topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: foo
+        matchLabelKeys:
+          - pod-template-hash
+```
 
 ## Configure OAuth2
 
