@@ -10,7 +10,7 @@ Issues addressed in the MKE 4k 4.1.0 release include:
 
 <!--- [BOP-1441] -->
 
-- Fixed an issue wherein the mkectl ``apply`` and ``upgrade``
+- Fixed an issue wherein the mkectl `apply` and `upgrade`
   commands could not succeed on clusters with less than 2GB of available
   storage.
 

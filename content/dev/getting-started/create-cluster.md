@@ -100,7 +100,7 @@ Once the new cluster is viable, you can start interacting with it using
 Always deploy an odd number of managers.
 
 MKE 4k embeds an etcd cluster across manager (controller) nodes, and with two
-managers any single failure will break quorum. Refer to the
+managers any single failure will break quorum. Refer to
 the etcd FAQ, [Why an odd number of cluster
 members?](https://etcd.io/docs/v3.5/faq/#why-an-odd-number-of-cluster-member),
 for more information.

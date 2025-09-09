@@ -19,8 +19,8 @@ to installation, you can use the MKE 4k web UI to apply the license:
 1. Log in to the MKE web UI with an administrator account.
 2. In the left-side navigation panel, navigate to **Admin Settings** -> **License**.
 3. Insert the license into the **license key** field. To do this, click
-   **Choose File** and navigate to the ``.lic`` file you previously downloaded.
-   Alternately, you can copy-paste the contents of the ``.lic`` file into the
+   **Choose File** and navigate to the `.lic` file you previously downloaded.
+   Alternately, you can copy-paste the contents of the `.lic` file into the
    field as a text string.
 
    <img src="/mke-docs/images/add-a-license.png" id="myBtn"></img>

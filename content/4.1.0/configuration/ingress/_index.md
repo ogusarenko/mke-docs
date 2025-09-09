@@ -16,10 +16,10 @@ rules.
 
 {{< callout type="info" >}}
 
-NGINX Ingress Controller is the only ingress controller that MKE 4k currently
+NGINX Ingress Controller is the only Ingress controller that MKE 4k currently
 supports. Consequently, MKE 4k does not support upgrades from MKE 3 clusters
-that use a BYO (Bring Your Own) NGINX ingress controller. Upgrade support is
-limited to the default MKE 3 ingress controller.
+that use a BYO (Bring Your Own) NGINX Ingress controller. Upgrade support is
+limited to the default MKE 3 Ingress controller.
 
 {{< /callout >}}
 

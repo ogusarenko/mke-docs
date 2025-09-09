@@ -98,8 +98,8 @@ authentication:
 
 ## Configure OAuth2
 
-You can use the ``mke4k.yaml`` configuration file to configure the Dex
-``oauth2`` fields.
+You can use the `mke4k.yaml` configuration file to configure the Dex
+`oauth2` fields.
 
 Example configuration:
 
@@ -113,9 +113,9 @@ authentication:
 
 | Field 	| Description 	|
 |---	|---	|
-| ``responseTypes`` 	| Use to configure the desired auth flow based on different values: <br><br> ``code`` --> Authorization Code Flow<br> ``id_token`` --> Implicit Flow<br> ``id_token token`` --> Implicit Flow<br> ``code id_token`` --> Hybrid Flow<br> ``code token`` --> Hybrid Flow<br> ``code id_token token`` --> Hybrid Flow 	|
-| ``skipApprovalScreen`` 	| Set to ``true`` to require users to approve sharing data with the connected application on every login. 	|
-| ``alwaysShowLoginScreen`` 	| Set to ``true`` to always show the login page, even when only one authentication type is configured. 	|
+| `responseTypes` 	| Use to configure the desired auth flow based on different values: <br><br> `code` --> Authorization Code Flow<br> `id_token` --> Implicit Flow<br> `id_token token` --> Implicit Flow<br> `code id_token` --> Hybrid Flow<br> `code token` --> Hybrid Flow<br> `code id_token token` --> Hybrid Flow 	|
+| `skipApprovalScreen` 	| Set to `true` to require users to approve sharing data with the connected application on every login. 	|
+| `alwaysShowLoginScreen` 	| Set to `true` to always show the login page, even when only one authentication type is configured. 	|
 
 ## Add Third-Party Client Applications
 

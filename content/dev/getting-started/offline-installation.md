@@ -106,7 +106,7 @@ how to create an `mke4.yaml` configuration file.
 
    Example:
 
-   ```
+   ```yaml
    spec:
      airgap:
        enabled: true

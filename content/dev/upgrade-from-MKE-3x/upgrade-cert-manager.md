@@ -41,7 +41,7 @@ completed, modify the `cert-manager-provided` manifest prior to running the
    curl -L https://github.com/cert-manager/cert-manager/releases/download/vX.Y.Z/cert-manager.yaml -o cert-manager.yaml
    ```
 
-2.  Verify that  [`yq`](https://github.com/mikefarah/yq) is installed on your system.
+2. Verify that [`yq`](https://github.com/mikefarah/yq) is installed on your system.
 
 3. Delete all CRDs from the manifests:
 
@@ -49,13 +49,13 @@ completed, modify the `cert-manager-provided` manifest prior to running the
    yq 'select(.kind != "CustomResourceDefinition")' cert-manager.yaml > cert-manager-no-crds.yaml
    ```
 
-3. Remove all cert-manager components, except for the CRDs:
+4. Remove all cert-manager components, except for the CRDs:
 
    ```
    kubectl delete -f cert-manager-no-crds.yaml
    ```
 
-4. Proceed with the upgrade to MKE 4k.
+5. Proceed with the upgrade to MKE 4k.
 
 </details>
 <br>
@@ -98,7 +98,7 @@ To uninstall a cert-manager that was installed using a Helm chart with the
 `crds.enabled: true` value, or `installCRDs: true` for versions prior to 1.15,
 first ensure that you are running version 1.15 or later. Versions prior to 1.15
 do not support the retention of CRDs during the helm uninstall, and thus if
-you run the command you will lose all of your CRDs and custom resources.
+you run the command, you will lose all of your CRDs and custom resources.
 As such, if your version of cert-manager is earlier than 1.15, you must
 upgrade it before running `helm uninstall`.
 
@@ -160,4 +160,4 @@ upgrade it before running `helm uninstall`.
 </details>
 
 References: [cert-manager installation
-documnetation](https://cert-manager.io/docs/installation/)
+documentation](https://cert-manager.io/docs/installation/)

@@ -32,7 +32,7 @@ Reasons to consider using an unmanaged CNI with MKE 4k include:
   specific networking features may require a CNI that offers advanced features
   not available in a default managed solution.
 
-* Legacy with with existing Infrastructure
+* Legacy with existing Infrastructure
 
   If you are migrating from an existing Kubernetes deployment with a specific
   CNI already in place, it may be preferable to continue using that CNI to

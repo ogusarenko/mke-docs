@@ -16,23 +16,23 @@ bootstrapping of the CNI during MKE 4k installation, consider the following:
 
 - Ensure that you have budgeted for the increased resource requirements that
   unmanaged CNIs may require. You can do this by pulling resource limits and
-  requests from the yaml or using a plugin such as
+  requests from the YAML or using a plugin such as
   https://github.com/robscott/kube-capacity.
 
-- IPv6 support for MKE 4k is currently not available and IPv6 enabled CNIs
+- IPv6 support for MKE 4k is currently not available, and IPv6 enabled CNIs
   cannot be used to obtain dual stack functionality.
 
 - Before installing the unmanaged CNI, ensure the availability of any
   prerequisites by installing those first. For example, if the unmanaged cni-s
   requires CSI drivers, you must install them prior to installing the unmanaged
-  CNI. Be aware, though, that in some cases running the prerequisites may
+  CNI. Be aware, though, that in some cases, running the prerequisites may
   require you to use host networking.
 
 - Once cluster networking is established, the MKE 4k installation or upgrade
   process will automatically detect it and move on to the next stages.
 
 - Ensure that your networking infrastructure is configured appropriately for
-  the unmanaged-chi and that your cluster and service CIDR-s are disjoint along
+  the unmanaged-chi and that your cluster and service CIDR-s are disjointed along
   with the CIDR-s that are used for the private node addresses.
 
 - Always perform extensive testing of your chosen unmanaged CNI solution in a
@@ -50,10 +50,10 @@ bootstrapping of the CNI during MKE 4k installation, consider the following:
 - The underlying Kubernetes provider used by MKE 4k [k0s] is available to use
   even without cluster networking being established. You can directly access it
   on any of the manager nodes through its binary, which is present in
-  ``/usr/local/bin/k0s``. Using it is the key to installing the unmanaged CNI
+  `/usr/local/bin/k0s`. Using it is the key to installing the unmanaged CNI
   and its pre-requisite Kubernetes resources.
 
 - You can prepare a KUBECONFIG with cluster-admin level access using
-  ``/usr/local/bin/k0s`` kubeconfig admin, pipe it to a file, and use it as
-  KUBECONFIG path for using helm or for using kubectl or client-go for the
+  `/usr/local/bin/k0s` kubeconfig admin, pipe it to a file, and use it as
+  a KUBECONFIG path for using helm or for using kubectl or client-go for the
   unmanaged CNI install steps.

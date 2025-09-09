@@ -27,7 +27,7 @@ Comprehensive information is offered herein on how to upgrade your existing MKE
 
 Following a successful upgrade:
 - Any swarm workloads will no longer exist.
-- For the admin user, the kubeconfig file is present in the `~/.mke/` directory of the machine upon which the ``mkectl`` command was executed. For other users, the admin can [create their kubeconfig files](../getting-started/access-manage-cluster-kubectl/).
+- For the admin user, the kubeconfig file is present in the `~/.mke/` directory of the machine upon which the `mkectl` command was executed. For other users, the admin can [create their kubeconfig files](../getting-started/access-manage-cluster-kubectl/).
 - The UCP Controller API will no longer be active or supported, and thus the
   MKE 3 client bundle will become invalid for MKE 4k.
 - The terminal prints a summary of the process.

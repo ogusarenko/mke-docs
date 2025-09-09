@@ -23,12 +23,12 @@ insights, compliance, and security.
 You can enable Kubernetes API server audit logging through the MKE
 configuration file, either during or after MKE 4k installation. The function is
 controlled by the ``spec.apiServer.audit`` section of the MKE 4k configuration
-file, and to enable it you simply set the  ``spec.apiServer.audit.enabled``
+file, and to enable it you set the  ``spec.apiServer.audit.enabled``
 parameter to ``true``.
 
 Example MKE 4k configuration:
 
-```
+``` yaml
 spec:
   apiServer:
     audit:
@@ -79,7 +79,7 @@ include:
   MKE 4k adds support for fully customizable audit policies by way of the
   ``customPolicyYaml`` field in the API server configuration:
 
-  ```
+  ``` yaml
   apiServer:
     externalAddress: <load-balancer>
     audit:

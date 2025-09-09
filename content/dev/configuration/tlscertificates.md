@@ -22,15 +22,15 @@ keys:
 
 1. All keys and certificates must be uploaded in PEM format, and the
    certificates must include the external address from
-   ``.spec.apiServer.externalAddress`` in the SANs list.
+   `.spec.apiServer.externalAddress` in the SANs list.
 
-2. In the ``mke4k.yaml`` configuration file, enable your custom TLS
+2. In the `mke4k.yaml` configuration file, enable your custom TLS
    certificates:
 
-   1.  Set ``.spec.certificates.enabled`` to ``true``.
+   1.  Set `.spec.certificates.enabled` to `true`.
 
-   2. Add your TLS certificates in the PEM format under ``ca``, ``cert`` and
-      ``key``, as illustrated below:
+   2. Add your TLS certificates in the PEM format under `ca`, `cert` and
+      `key`, as illustrated below:
 
       ```yaml
        spec:
@@ -56,11 +56,11 @@ keys:
    mkectl apply
    ```
 
-4. Once the ``mkectl apply`` command completes, to avoid storing sensitive data
-   in the local file you can remove the ``cert`` and ``key`` fields from
-   ``.spec.certificates``, as at this point the certificates have been stored
+4. Once the `mkectl apply` command completes, to avoid storing sensitive data
+   in the local file you can remove the `cert` and `key` fields from
+   `.spec.certificates`, as at this point the certificates have been stored
    securely in the cluster.
 
-   {{< callout type=“warning >}}
-   Do not remove the ``ca`` key and its value from ``.spec.certificates``.
+   {{< callout type="warning" >}}
+   Do not remove the `ca` key and its value from `.spec.certificates`.
    {{< /callout >}}
