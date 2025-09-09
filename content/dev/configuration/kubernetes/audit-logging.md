@@ -22,9 +22,9 @@ insights, compliance, and security.
 
 You can enable Kubernetes API server audit logging through the MKE
 configuration file, either during or after MKE 4k installation. The function is
-controlled by the ``spec.apiServer.audit`` section of the MKE 4k configuration
-file, and to enable it you set the  ``spec.apiServer.audit.enabled``
-parameter to ``true``.
+controlled by the `spec.apiServer.audit` section of the MKE 4k configuration
+file, and to enable it you set the  `spec.apiServer.audit.enabled`
+parameter to `true`.
 
 Example MKE 4k configuration:
 
@@ -33,25 +33,28 @@ spec:
   apiServer:
     audit:
       enabled: false
-      logPath: /var/lib/k0s/audit.log
+      level: Metadata
+      logPath: /var/log/mke4/audit/audit.log
       maxAge: 30
       maxBackup: 10
       maxSize: 10
+      policyFile: /etc/audit_policy.yaml
 ```
+
 
 ## Configuration fields
 
 | Field 	| Description 	|
 |---	|---	|
-| Enabled 	| Enables or disables API server audit logging.<br><br>  Default: ``false`` 	|
-| LogPath 	| Filesystem path where audit logs are written.<br><br>   Default: ``/var/log/k0s/audit/mke4_audit.log`` {{< callout type=“warning" >}} MKE 4k strictly enforces the default value, and will reject any attempt to configure a custom log path. {{< /callout >}}	|
-| Level 	| Specifies the audit logging level.<br><br>  Valid values: ``none``, ``metadata``, ``request``.<br><br>  ``metadata`` 	|
-| MaxAge 	| Maximum number of days to retain old audit log files.<br><br>  Default: ``30`` 	|
-| MaxBackup 	| Maximum number of old audit log files to retain.<br><br>  Default: ``10`` 	|
-| MaxSize 	| Maximum size (in MB) of the audit log file before rotation.<br><br>  Default: ``10`` 	|
-| CustomPolicyYaml 	| Inline YAML definition of a custom audit policy. If set, overrides the default policy.<br><br>  Default: ``“”`` 	|
-| PolicyFile 	| Filesystem path to the audit policy file used by the API server.<br><br>  Default: ``/var/lib/k0s/mke4_audit_policy.yaml`` {{< callout type=“note" >}}The default file path cannot be changed. You can still provide a custom audit policy using  ``spec.apiServer.audit.customPolicyYaml``, however the ``policyFile`` path itself is immutable. {{< /callout >}}	|
-| WebhookConfigPath 	| Path to the file containing the webhook configuration backend for sending audit events.<br><br>  Default: ``“”`` 	|
+| `enabled` 	| Enables or disables API server audit logging.<br><br>  Default: `false` 	|
+| `logPath` 	| Filesystem path where audit logs are written.<br><br>   Default: `/var/log/mke4/audit/audit.log` {{< callout type=“warning" >}} MKE 4k strictly enforces the default value, and will reject any attempt to configure a custom log path. {{< /callout >}}	|
+| `level` 	| Specifies the audit logging level.<br><br>  Valid values: `none`, `metadata`, `request`.<br><br>  `metadata` 	|
+| ma`xAge 	| Maximum number of days to retain old audit log files.<br><br>  Default: `30` 	|
+| `maxBackup` 	| Maximum number of old audit log files to retain.<br><br>  Default: `10` 	|
+| `maxSize` 	| Maximum size (in MB) of the audit log file before rotation.<br><br>  Default: `10` 	|
+| `customPolicyYaml` 	| Inline YAML definition of a custom audit policy. If set, overrides the default policy.<br><br>  Default: `“”` 	|
+| `policyFile` 	| Filesystem path to the audit policy file used by the API server.<br><br>  Default: `/etc/audit_policy.yaml` {{< callout type=“note" >}}The default file path cannot be changed. You can still provide a custom audit policy using  `spec.apiServer.audit.customPolicyYaml`, however the `policyFile` path itself is immutable. {{< /callout >}}	|
+| `webhookConfigPath` 	| Path to the file containing the webhook configuration backend for sending audit events.<br><br>  Default: `“”` 	|
 
 ## Comparison to MKE 3x Audit Logging
 
@@ -59,25 +62,25 @@ MKE 4k improves on MKE 3x Kubernetes API server audit logging, providing better
 visibility, flexibility, and control over cluster activity. Key enhancements
 include:
 
--  ``Metadata`` as the default audit level
+-  `Metadata` as the default audit level
 
-   In MKE 4k, the API server defaults to level ``Metadata``, in alignment with
+   In MKE 4k, the API server defaults to level `Metadata`, in alignment with
    the recommended minimal audit policy that is recommended by Kubernetes. In
-   comparison, the default level for MKE 3x is from MKE-3 is ``None``.
+   comparison, the default level for MKE 3x is from MKE-3 is `None`.
 
 - Configurable audit levels
 
   MKE 4k users can configure the audit log level through the MKE 4k
-  configuration file, under ``apiServer.audit.level``. The values that are
-  supported are ``None``, ``Metadata``, and ``Request``.
+  configuration file, under `apiServer.audit.level`. The values that are
+  supported are `None`, `Metadata`, and `Request`.
 
   To match the audit policy tuning available in MKE 3x, MKE 4k uses a specific
-  audit stage ``RequestReceived``, for noise reduction in the audit logs.
+  audit stage `RequestReceived`, for noise reduction in the audit logs.
 
 - Support for Custom Audit Policies
 
   MKE 4k adds support for fully customizable audit policies by way of the
-  ``customPolicyYaml`` field in the API server configuration:
+  `customPolicyYaml` field in the API server configuration:
 
   ``` yaml
   apiServer:
@@ -85,7 +88,7 @@ include:
     audit:
       enabled: true
       level: metadata
-      logPath: /var/log/k0s/audit/mke4_audit.log
+      logPath: /var/log/mke4/audit/audit.log
       customPolicyYaml: |
         apiVersion: audit.k8s.io/v1
         kind: Policy
