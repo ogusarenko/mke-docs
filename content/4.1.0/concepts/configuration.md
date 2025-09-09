@@ -24,7 +24,7 @@ how to set up the cluster.
 
 1. Generate the default `mke4.yaml` configuration file by running:
 
-    ```commandline
+    ```
     mkectl init > mke4.yaml
     ```
 

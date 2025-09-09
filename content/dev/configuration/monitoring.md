@@ -13,7 +13,7 @@ supporting exporters.
 
 While a number of components are always enabled as they are required for core
 monitoring, you can enable and disable others through configuration flags
-under the ``monitoring`` section of the ``mke4k.yaml`` configuration file.
+under the ``monitoring`` section of the `mke4.yaml` configuration file.
 
 | Parameter 	| Type 	| Default 	| Description 	|
 |---	|---	|---	|---	|
@@ -22,9 +22,9 @@ under the ``monitoring`` section of the ``mke4k.yaml`` configuration file.
 | ``enableCAdvisor`` 	| bool 	| ``false`` 	| Controls how cAdvisor metrics are scraped. <dl>   <dt>``false``   <dd>Prometheus scrapes cAdvisor metrics through kubelet. </dd>  <dt>``true``   <dd>Kubelet scraping is disabled; assumes that a standalone cAdvisor service is available. </dd> </dl> 	|
 | ``prometheus.nodeSelector`` 	| map[string]string 	| ``{}`` 	| Node selector labels applied to Prometheus Pods to control scheduling. For example, pinning Prometheus to dedicated monitoring nodes. 	|
 
-Example ``mke4k.yaml`` configuration:
+Example `mke4.yaml` configuration file:
 
-```
+```yaml
 monitoring:
     enableGrafana: true
     grafana:
@@ -55,7 +55,7 @@ monitoring stack:
 
 ### Optional
 
-Optional stack components are exposed in the ``monitoring`` section of the ``mke4k.yaml`` configuration file.
+Optional stack components are exposed in the ``monitoring`` section of the `mke4.yaml` configuration file.
 
 | Component 	| Description 	|
 |---	|---	|

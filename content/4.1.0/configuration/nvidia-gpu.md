@@ -50,7 +50,7 @@ NVIDIA GPU support is disabled in MKE 4k by default.
 
 **To enable NVIDIA GPU support:**
 
-1. Obtain the mke4.yaml configuration file:
+1. Obtain the `mke4.yaml` configuration file:
 
    ```
    mkectl init > mke4.yaml

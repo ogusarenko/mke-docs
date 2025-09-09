@@ -23,13 +23,13 @@ To ensure that your MKE 4k cluster is licensed upon installation:
 
 2. Apply the license:
 
-   ```commandline
+   ```
    mkectl apply
    ```
 
 3. Check the license status:
 
-   ```commandline
+   ```
    kubectl -n mke get mkeconfig mke -ojsonpath="{.status.licenseStatus}" | jq 
    ```
 

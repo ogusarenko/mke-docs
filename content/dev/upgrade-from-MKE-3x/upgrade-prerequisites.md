@@ -93,7 +93,7 @@ upgrading MKE 3 to MKE 4k:
 
 - k0rdent is not enabled when you upgrade from MKE 3 to MKE 4k. If
   you would like to enable it following the upgrade process, set
-  ``k0rdent.enabled`` to ``true`` in the ``MKE4.yaml`` configuration file.
+  ``k0rdent.enabled`` to ``true`` in the `mke4.yaml` configuration file.
 
   ```yaml
   spec:

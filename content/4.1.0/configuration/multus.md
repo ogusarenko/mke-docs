@@ -27,10 +27,10 @@ configuration.
    mkectl init
    ```
 
-2. Navigate to the `network` section of the configuration file, and set the
-   `enabled` parameter for multus to `true`.
+2. Navigate to the `network` section of the `mke4.yaml` configuration file, and
+   set the `enabled` parameter for multus to `true`.
 
-   ```
+   ```yaml
    network:
      multus:
        enabled: true

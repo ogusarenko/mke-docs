@@ -29,11 +29,11 @@ To install an unmanaged CNI plugin on a fresh installation of MKE 4k:
       file for installation.
 
    Alternatively, in the event that your final cluster configuration with all
-   your customizations is already present in the `mke4k.yaml` file, but
-   it is using the default CNI, you can change it to use an unmanaged CNI:
+   your customizations is already present in the `mke4.yaml` configuration file
+   but it is using the default CNI, you can change it to use an unmanaged CNI:
 
    ```
-   yq 'del(.spec.network.providers)' mke4.yaml|yq '.spec.network.providers |=([{"enabled": true, "provider": "custom"}])' > mke4.yaml.tmp && mv mke4.yaml.tmp mke4k.yaml
+   yq 'del(.spec.network.providers)' mke4.yaml|yq '.spec.network.providers |=([{"enabled": true, "provider": "custom"}])' > mke4.yaml.tmp && mv mke4.yaml.tmp mke4.yaml
    ```
 
    {{< callout type=info >}}
@@ -52,9 +52,9 @@ To install an unmanaged CNI plugin on a fresh installation of MKE 4k:
 
    {{< /callout >}}
 
-5. Apply the `mke4k.yaml` file to initiate MKE 4k installation:
+4. Apply the `mke4.yaml` configuration file to initiate MKE 4k installation:
 
-   ```
+   ```yaml
    mkectl apply -f mke4.yaml <timeout-specifications>
    ```
 
@@ -66,7 +66,7 @@ To install an unmanaged CNI plugin on a fresh installation of MKE 4k:
 
    {{< /callout >}}
 
-6. Once the installation reaches the point where cluster networking is being
+5. Once the installation reaches the point where cluster networking is being
    verified, install your chosen CNI. Look for the following indicators to
    know when this stage has been reached:
 

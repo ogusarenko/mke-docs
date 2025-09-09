@@ -56,14 +56,15 @@ by selecting the desired region from the dropdown menu in the top-right corner.
 
 ## Install MKE 4k on k0s
 
-1. Generate a sample `mke4.yaml` file:
+1. Generate a sample `mke4.yaml` configuration file:
 
    ```shell
    mkectl init > mke4.yaml
    ```
 
-2. Edit the `hosts` section in `mke4.yaml` using the values from the `VMs.yaml`
-   file. Example configuration of the `hosts` section:
+2. Edit the `hosts` section in the `mke4.yaml` configuration file using the
+   values from the `VMs.yaml` file. Example configuration of the `hosts`
+   section:
 
    ```yaml
    hosts:
@@ -87,7 +88,8 @@ by selecting the desired region from the dropdown menu in the top-right corner.
    terraform output -raw lb_dns_name | { read lb; yq -i ".apiServer.externalAddress = \"$lb\"" mke4.yaml; }
    ```
 
-   If you do not have the `yq` tool installed, edit the `mke4.yaml` file manually
+   If you do not have the `yq` tool installed, edit the `mke4.yaml`
+   configuration file manually
    setting `apiServer.externalAddress` to the output of the `terraform output -raw lb_dns_name` command.
 
 4. Create the MKE 4k cluster:

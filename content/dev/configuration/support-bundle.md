@@ -20,13 +20,13 @@ obtain the support bundle plugin from the release archives and install it manual
     
     2. Install the support bundle plugin:
         
-       ```commandline
+       ```
        kubectl krew install support-bundle
 
 
     3. Append the ``$HOME/.krew/bin`` directory to your ``$PATH`` environment variable:
 
-       ```commandline
+       ```
        export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
        ```
 
@@ -47,7 +47,7 @@ obtain the support bundle plugin from the release archives and install it manual
     Run the following command to download and unarchive the latest release,
     and move the plugin to your ``$PATH``:
     
-    ```commandline
+    ```
     curl -L https://github.com/replicatedhq/troubleshoot/releases/latest/download/support-bundle_linux_amd64.tar.gz | tar xzvf -
     sudo mv ./support-bundle /usr/local/bin/kubectl-support_bundle
         ```
@@ -65,7 +65,7 @@ method that was used to install the plugin.
     {{< tab >}}
     Run the following krew command to upgrade your existing support-bundle:
    
-    ```commandline
+    ```
     kubectl krew upgrade support-bundle
     ```
     {{< /tab >}}
@@ -75,13 +75,13 @@ method that was used to install the plugin.
     
     1. Download the latest version of the plugin:
 
-    ```commandline
+    ```
     curl -L https://github.com/replicatedhq/troubleshoot/releases/latest/download/support-bundle_linux_amd64.tar.gz | tar xzvf -
     ```
 
     2. Replace the existing plugin with the new version:
 
-    ```commandline
+    ```
     sudo mv ./support-bundle /usr/local/bin/kubectl-support_bundle
     ```
 
@@ -99,7 +99,7 @@ method that was used to install the plugin.
     {{< tab >}}
     Run the following command to remove the support bundle plugin:
     
-    ```commandline
+    ```
     kubectl krew uninstall support-bundle
     ```
     {{< /tab >}}
@@ -108,7 +108,7 @@ method that was used to install the plugin.
       at installation. 
     2. Remove the support bundle:
     
-      ```commandline
+      ```
       sudo rm /usr/local/bin/kubectl-support_bundle
       ```
     {{< /tab >}}
@@ -141,7 +141,7 @@ method that was used to install the plugin.
 
 2. Generate the support bundle:
 
-    ```commandline
+    ```
     kubectl support-bundle ./path-to-your-support-bundle.yaml
     ```
 

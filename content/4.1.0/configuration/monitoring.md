@@ -69,11 +69,12 @@ To access the Grafana dashboard:
 4. Enter the default username **admin** into the **Email or username** field and type the password you retrieved from the `monitoring-grafana` secret into the **Password** field.
 
 5. Click **Log In**.
-   
+
 ## cAdvisor
 
-[cAdvisor](https://github.com/google/cadvisor) is an open-source tool that collects, aggregates, processes, 
-and exports information in reference to running containers.
+[cAdvisor](https://github.com/google/cadvisor) is an open-source tool that
+collects, aggregates, processes, and exports information in reference to
+running containers.
 
 cAdvisor is disabled in MKE 4k by default. You can enable the tool through the `mke4.yaml` configuration file:
 
@@ -84,10 +85,11 @@ monitoring:
 
 ## OpsCare (Under development)
 
-[Mirantis OpsCare](https://www.mirantis.com/resources/opscare-datasheet/) is
-an advanced monitoring and alerting solution. Once it is integrated, Mirantis OpsCare will enhance the monitoring
-capabilities of MKE 4k by incorporating additional tools and features, such as
-[Prometheus Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/).
+[Mirantis OpsCare](https://www.mirantis.com/resources/opscare-datasheet/) is an
+advanced monitoring and alerting solution. Once it is integrated, Mirantis
+OpsCare will enhance the monitoring capabilities of MKE 4k by incorporating
+additional tools and features, such as [Prometheus
+Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/).
 
 Disabled by default, you can enable Mirantis OpsCare through the `mke4.yaml` configuration file.
 

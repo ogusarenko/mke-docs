@@ -6,7 +6,7 @@ weight: 1
 Mirantis Kubernetes Engine (MKE) 4k is an enterprise-grade, production-ready
 Kubernetes platform that is designed to be secure, scalable, and reliable.
 
-You can manage the entire MKE 4k cluster through the mke4.yaml configuration
+You can manage the entire MKE 4k cluster through the `mke4.yaml` configuration
 file. Refer to [Configuration](../configuration) for details.
 
 ## Components

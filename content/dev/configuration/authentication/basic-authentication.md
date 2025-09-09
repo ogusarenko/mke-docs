@@ -89,7 +89,7 @@ user page.
 ## Disable local users
 
 You can disable local users by adding the ``authentication.localUsers``
-parameter to the ``mke4k.yaml`` configuration file and setting it to ``false``:
+parameter to the `mke4.yaml` configuration file and setting it to `false`:
 
 ```yaml
 authentication:

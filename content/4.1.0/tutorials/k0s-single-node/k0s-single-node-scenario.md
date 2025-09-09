@@ -33,7 +33,7 @@ are met, perform the following actions:
    mkectl init > mke4.yaml
    ```
 
-2. Edit the `hosts` section in `mke4.yaml`.
+2. Edit the `hosts` section in the `mke4.yaml` configuration file.
 
    Example configuration of the `hosts` section:
 

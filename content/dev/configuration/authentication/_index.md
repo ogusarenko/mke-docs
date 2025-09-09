@@ -73,7 +73,7 @@ The following table shows all of the available fields for the `expiry` section.
 
 ## Configure Dex for High Availability
 
-You can adjust the following parameters in the ``mke4.yaml`` configuration file
+You can adjust the following parameters in the `mke4.yaml` configuration file
 to set MKE 4k to run in High Availability (HA) mode:
 
 | Dex Helm chart field 	| Description 	|

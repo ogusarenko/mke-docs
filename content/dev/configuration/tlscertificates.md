@@ -24,7 +24,7 @@ keys:
    certificates must include the external address from
    `.spec.apiServer.externalAddress` in the SANs list.
 
-2. In the `mke4k.yaml` configuration file, enable your custom TLS
+2. In the `mke4.yaml` configuration file, enable your custom TLS
    certificates:
 
    1.  Set `.spec.certificates.enabled` to `true`.
