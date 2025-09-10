@@ -53,8 +53,6 @@ NAME   STATUS      ERRORS   WARNINGS   CREATED                         EXPIRES  
 test   Completed   0        0          2024-05-07 17:29:18 -0400 EDT   29d       default            <none>
 ```
 
-To view detailed logs of a backup, [access the MinIO UI](#access-minio-console).
-
 ## Restore from an in-cluster backup
 
 A restore operation returns the Kubernetes cluster to the state it was in at the time the backup you selected was created.
@@ -96,29 +94,3 @@ mkectl restore list
 NAME                  BACKUP   STATUS      STARTED                         COMPLETED                       ERRORS   WARNINGS   CREATED                         SELECTOR
 test-20240507173309   test     Completed   2024-05-07 17:33:09 -0400 EDT   2024-05-07 17:33:34 -0400 EDT   0        121        2024-05-07 17:33:09 -0400 EDT   <none>
 ```
-
-To view detailed logs, [access the MinIO UI](#access-minio-console).
-
-## Access the MinIO Console<a name="access-minio-console"></a>
-
-To access the MinIO Console:
-
-1. Obtain the username from your cluster:
-
-   ```shell
-   kubectl --kubeconfig <path_to_kubeconfig> get secret -n mke minio-credentials -o jsonpath='{.data.root-user}' | base64 -d; echo;
-   ```
-
-2. Obtain the password from your cluster:
-
-   ```shell
-   kubectl --kubeconfig <path_to_kubeconfig> get secret -n mke minio-credentials -o jsonpath='{.data.root-password}' | base64 -d; echo;   ```
-
-3. Navigate to the external address for your ingress controller under `/minio/`.
-
-   Example:
-   `https://<external_address>/minio/`
-
-4. Log in using the username and password. The Velero bucket displays under the Object browser, and you can download or upload backups, using the options provided by the MinIO UI.
-
-   ![MinIO UI](minio_ui.png)

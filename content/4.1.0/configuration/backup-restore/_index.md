@@ -19,7 +19,6 @@ backup:
   storage_provider:
     type: InCluster
     in_cluster_options:
-      enable_ui: true
       distributed: false
 ```
 
@@ -27,10 +26,6 @@ By default, MKE 4k supports backups that use the in-cluster storage
 provider, as shown in the `type.InCluster` field.
 In-cluster backups for MKE 4k are implemented using the
 [MinIO add-on](https://min.io/).
-
-Set `enable_ui` to `true` to expose the MinIO Console through the Ingress and
-make it accessible through the UI. Core backup functionality works, even if
-the UI is disabled.
 
 The `distributed` setting configures MinIO storage to run in distributed mode.
 
@@ -50,13 +45,6 @@ Refer to the following list for detail on all the configuration file `backup` fi
 
   -  `InCluster`, `External`
   - Default: `InCluster`
-
-`storage_provider.in_cluster_options.enable_ui`
-
-: Indicates whether to expose InCluster (MinIO) storage through NodePort.
-
-  - Valid values: `true`, `false`
-  - Default: `true`
 
 `storage_provider.in_cluster_options.distributed`
 
@@ -107,5 +95,3 @@ provider types, refer to:
 - Restoration Scope: Backups can only be restored to the same cluster where they
   were originally created. Restoring to a new set of nodes is not supported.
 
-- Backup Transfer: Backups must be manually downloaded and uploaded via the MinIO
-  Console UI (accessible at <mke_url>/minio/). This functionality is not yet available through the CLI.
