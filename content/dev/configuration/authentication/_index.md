@@ -78,8 +78,8 @@ to set MKE 4k to run in High Availability (HA) mode:
 
 | Dex Helm chart field 	| Description 	|
 |---	|---	|
-| ``replicaCount`` 	| Determines the number of Dex Pod instances.<br><br>Default: ``1`` 	|
-| ``topologySpreadConstraints`` 	| Defines a method of choosing the nodes that
+| `replicaCount` 	| Determines the number of Dex Pod instances.<br><br>Default: `1` 	|
+| `topologySpreadConstraints` 	| Defines a method of choosing the nodes that
 a Pod should run on. 	|
 
 ```yaml

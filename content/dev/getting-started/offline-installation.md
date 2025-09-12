@@ -158,18 +158,17 @@ To upgrade MKE 4k in an airgap environment:
    {{< callout type=info >}}
 
    If you do not provide a path to an etcd backup as part of the
-   ``mkectl upgrade`` command, mkectl automatically generates a pre-upgrade
+   `mkectl upgrade` command, mkectl automatically generates a pre-upgrade
    backup prior to initiating the upgrade.
 
    {{< /callout >}}
 
 5. Run the upgrade.
 
-   ```
+   ```bash
    mkectl upgrade --upgrade-version <version_to_upgrade_to> --etcd-snapshot-path
    <path_to_pre-upgrade_snapshot> --release-matrix <path_to_release_matrix>
    ```
-
 
 ## MKE 4k versus MKE 3 ##
 

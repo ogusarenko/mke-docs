@@ -35,12 +35,12 @@ directly to the kube-apiserver process at runtime.
 
 ## Encryption configuration
 
-MKE 4k provides at-rest encryption for cluster secrets using the ``aescbc``
+MKE 4k provides at-rest encryption for cluster secrets using the `aescbc`
 provider with a static secret. The encryption configuration is generated during
 initial cluster provisioning and is stored on every manager node at
-``/var/lib/k0s/encryption.cfg``.
+`/var/lib/k0s/encryption.cfg`.
 
-An example of the default ``encryption.cfg`` file follows:
+An example of the default `encryption.cfg` file follows:
 
 ```yaml
 kind: EncryptionConfig
@@ -55,15 +55,15 @@ resources:
           secret: <randomly_generated_key>
 ```
 
-To change the configuration, to add a KMS provider for example, you use the
-default ``encryption.cfg`` file as the basis for creating a new encryption
+To change the configuration, to add a KMS provider, for example, you use the
+default `encryption.cfg` file as the basis for creating a new encryption
 configuration file.
 
 {{< callout type=warning >}}
 
 Backup the encryption config file before making any changes:
 
-```
+```bash
 sudo cp /var/lib/k0s/encryption.cfg /path/to/backup/folder/encryption.cfg.backup
 ```
 
@@ -72,9 +72,9 @@ will be lost and will need to be recreated.
 
 {{< /callout >}}
 
-1. Copy the ``encryption.cfg`` file and give it a new name.
+1. Copy the `encryption.cfg` file and give it a new name.
 
-   ```
+   ```bash
    sudo cp /var/lib/k0s/encryption.cfg /var/lib/k0s/<new_encryption_filename>.cfg
    ```
 
@@ -88,30 +88,30 @@ will be lost and will need to be recreated.
 
    {{< /callout >}}
 
-3. Verify that the modified encryption configuration file is owned by the
-   ``kube-apiserver`` user with ``600`` permissions.
+2. Verify that the modified encryption configuration file is owned by the
+   `kube-apiserver` user with `600` permissions.
 
-   ```
+   ```bash
    sudo chown kube-apiserver:root /var/lib/k0s/<new_encryption_filename>.cfg
    sudo chmod 600 /var/lib/k0s/<new_encryption_filename>.cfg
    ```
 
-4. Place copies of the modified encryption configuration file at the same
+3. Place copies of the modified encryption configuration file at the same
    locations on each manager node.
 
-5. Edit the ``.spec.apiServer.encryptionProvider`` parameter in the
-   ``mke4.yaml`` configuration file to point to the new encryption
+4. Edit the `.spec.apiServer.encryptionProvider` parameter in the
+   `mke4.yaml` configuration file to point to the new encryption
    configuration file:
 
-   ```
+   ```yaml
    spec:
      apiServer:
        encryptionProvider: /var/lib/k0s/<new_encryption_filename>.cfg
    ```
 
-6. Apply the ``mke4.yaml`` configuration file to set the encryption
+5. Apply the `mke4.yaml` configuration file to set the encryption
    configuration:
 
-   ```
+   ```bash
    mkectl apply
    ```

@@ -13,14 +13,14 @@ supporting exporters.
 
 While a number of components are always enabled as they are required for core
 monitoring, you can enable and disable others through configuration flags
-under the ``monitoring`` section of the `mke4.yaml` configuration file.
+under the `monitoring` section of the `mke4.yaml` configuration file.
 
 | Parameter 	| Type 	| Default 	| Description 	|
 |---	|---	|---	|---	|
-| ``enableGrafana`` 	| bool (optional) 	| ``true`` 	| Enables and disables Grafana deployment. 	|
-| ``grafana.ingress.enabled``     	| bool 	| ``false`` 	| Creates an Ingress resource to expose Grafana (path ``/grafana``).<br><br>Effective only if ``enableGrafana`` is set to ``true``. 	|
-| ``enableCAdvisor`` 	| bool 	| ``false`` 	| Controls how cAdvisor metrics are scraped. <dl>   <dt>``false``   <dd>Prometheus scrapes cAdvisor metrics through kubelet. </dd>  <dt>``true``   <dd>Kubelet scraping is disabled; assumes that a standalone cAdvisor service is available. </dd> </dl> 	|
-| ``prometheus.nodeSelector`` 	| map[string]string 	| ``{}`` 	| Node selector labels applied to Prometheus Pods to control scheduling. For example, pinning Prometheus to dedicated monitoring nodes. 	|
+| `enableGrafana` 	| bool (optional) 	| `true` 	| Enables and disables Grafana deployment. 	|
+| `grafana.ingress.enabled`     	| bool 	| `false` 	| Creates an Ingress resource to expose Grafana (path `/grafana`).<br><br>Effective only if `enableGrafana` is set to `true`. 	|
+| `enableCAdvisor` 	| bool 	| `false` 	| Controls how cAdvisor metrics are scraped. <dl>   <dt>`false`   <dd>Prometheus scrapes cAdvisor metrics through kubelet. </dd>  <dt>`true`   <dd>Kubelet scraping is disabled; assumes that a standalone cAdvisor service is available. </dd> </dl> 	|
+| `prometheus.nodeSelector` 	| map[string]string 	| `{}` 	| Node selector labels applied to Prometheus Pods to control scheduling. For example, pinning Prometheus to dedicated monitoring nodes. 	|
 
 Example `mke4.yaml` configuration file:
 
@@ -34,10 +34,10 @@ monitoring:
     prometheus: {}
 ```
 
-- ``enableGrafana: true`` → Grafana is deployed by default.
-- ``grafana.ingress.enabled: false`` → Grafana is not exposed via Ingress by default.
-- ``enableCAdvisor: false`` → Prometheus scrapes cAdvisor metrics via kubelet.
-- ``prometheus: {}`` → Prometheus runs with default settings, as a nodeSelector
+- `enableGrafana: true` → Grafana is deployed by default.
+- `grafana.ingress.enabled: false` → Grafana is not exposed through Ingress by default.
+- `enableCAdvisor: false` → Prometheus scrapes cAdvisor metrics through kubelet.
+- `prometheus: {}` → Prometheus runs with default settings, as a nodeSelector
   is not applied.
 
 ## Stack components
@@ -55,12 +55,12 @@ monitoring stack:
 
 ### Optional
 
-Optional stack components are exposed in the ``monitoring`` section of the `mke4.yaml` configuration file.
+Optional stack components are exposed in the `monitoring` section of the `mke4.yaml` configuration file.
 
 | Component 	| Description 	|
 |---	|---	|
-| Grafana 	| Dashboarding and visualization. Controlled by the ``enableGrafana`` parameter. Ingress exposure is controlled by the ``grafana.ingress.enabled`` parameter.
-| Kubelet cAdvisor metrics 	| Enabled by default; disabled if ``enableCAdvisor`` is set to ``true``. {{< callout type="info" >}}If disabled, MKE 4k expects a standalone cAdvisor service.{{< /callout >}} 	|
+| Grafana 	| Dashboarding and visualization. Controlled by the `enableGrafana` parameter. Ingress exposure is controlled by the `grafana.ingress.enabled` parameter.
+| Kubelet cAdvisor metrics 	| Enabled by default; disabled if `enableCAdvisor` is set to `true`. {{< callout type="info" >}}If disabled, MKE 4k expects a standalone cAdvisor service.{{< /callout >}} 	|
 
 ## Component Detail
 
@@ -69,9 +69,9 @@ Optional stack components are exposed in the ``monitoring`` section of the `mke4
 | Prometheus 	| ✅ Always enabled 	| Includes an additional ServiceMonitor for k0s-observability pushgateway. Configured to discover ServiceMonitors across all namespaces. 	| Not applicable. Always on. 	|
 | PrometheusOperator 	| ✅ Always enabled 	| Manages Prometheus and AlertManager CRDs. Admission webhook patch job also tolerates master taints. 	| Not applicable. Always on. 	|
 | KubeStateMetrics 	| ✅ Always enabled 	| Exposes cluster state metrics. Runs with tolerations for master node taints. 	| Not applicable. Always on. 	|
-| Node Exporter 	| ✅ Always enabled 	| Deployed as a DaemonSet (``monitoring-prometheus-node-exporter-*``), one Pod per node. Provides node-level metrics (CPU, memory, filesystem, network). Scraped by Prometheus. 	| Not applicable. Always on. 	|
-| Grafana 	| ➡️ Controlled by ``monitoring.enableGrafana`` 	| Provides dashboards. If enabled, tolerates master taints. Ingress can also be enabled separately. 	| monitoring.enableGrafana: true/false  monitoring.grafana.ingress.enabled: true/false 	|
-| Kubelet ServiceMonitor (cAdvisor) 	| ✅ Enabled by default.<br>❌ Disabled when ``monitoring.enableCAdvisor`` is ``true``. 	| Uses the cAdvisor built into kubelet, unless an external standalone cAdvisor service is enabled. 	| monitoring.enableCAdvisor: true/false 	|
+| Node Exporter 	| ✅ Always enabled 	| Deployed as a DaemonSet (`monitoring-prometheus-node-exporter-*`), one Pod per node. Provides node-level metrics (CPU, memory, filesystem, network). Scraped by Prometheus. 	| Not applicable. Always on. 	|
+| Grafana 	| ➡️ Controlled by `monitoring.enableGrafana` 	| Provides dashboards. If enabled, tolerates master taints. Ingress can also be enabled separately. 	| monitoring.enableGrafana: true/false  monitoring.grafana.ingress.enabled: true/false 	|
+| Kubelet ServiceMonitor (cAdvisor) 	| ✅ Enabled by default.<br>❌ Disabled when `monitoring.enableCAdvisor` is `true`. 	| Uses the cAdvisor built into kubelet, unless an external standalone cAdvisor service is enabled. 	| monitoring.enableCAdvisor: true/false 	|
 
 ## Access Prometheus
 
@@ -139,8 +139,8 @@ monitoring:
 
 | MKE 3 parameter 	| MKE 4k 	|
 |---	|---	|
-| ``cluster_config.node_exporter_port`` 	| Not supported 	|
-| ``cluster_config.prometheus_memory_limit`` 	| Not supported 	|
-| ``cluster_config.prometheus_memory_request`` 	| Not supported 	|
-| ``cluster_config.metrics_scrape_interval`` 	| Not supported 	|
-| ``cluster_config.metrics_retention_time`` 	| Not supported 	|
+| `cluster_config.node_exporter_port` 	| Not supported 	|
+| `cluster_config.prometheus_memory_limit` 	| Not supported 	|
+| `cluster_config.prometheus_memory_request` 	| Not supported 	|
+| `cluster_config.metrics_scrape_interval` 	| Not supported 	|
+| `cluster_config.metrics_retention_time` 	| Not supported 	|

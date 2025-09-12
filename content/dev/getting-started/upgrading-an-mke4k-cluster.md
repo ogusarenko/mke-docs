@@ -35,7 +35,7 @@ k0rdent, resulting in a more prolonged upgrade process.
 
 3. Run the upgrade.
 
-   ```
+   ```bash
    mkectl upgrade --upgrade-version <version_to_upgrade_to> --etcd-snapshot-path
    <path_to_pre-upgrade_snapshot>
    ```
