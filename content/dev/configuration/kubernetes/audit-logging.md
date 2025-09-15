@@ -49,7 +49,7 @@ spec:
 | `enabled` 	| Enables or disables API server audit logging.<br><br>  Default: `false` 	|
 | `logPath` 	| Filesystem path where audit logs are written.<br><br>   Default: `/var/log/mke4/audit/audit.log` {{< callout type=“warning" >}} MKE 4k strictly enforces the default value, and will reject any attempt to configure a custom log path. {{< /callout >}}	|
 | `level` 	| Specifies the audit logging level.<br><br>  Valid values: `none`, `metadata`, `request`.<br><br>  `metadata` 	|
-| ma`xAge 	| Maximum number of days to retain old audit log files.<br><br>  Default: `30` 	|
+| `maxAge` 	| Maximum number of days to retain old audit log files.<br><br>  Default: `30` 	|
 | `maxBackup` 	| Maximum number of old audit log files to retain.<br><br>  Default: `10` 	|
 | `maxSize` 	| Maximum size (in MB) of the audit log file before rotation.<br><br>  Default: `10` 	|
 | `customPolicyYaml` 	| Inline YAML definition of a custom audit policy. If set, overrides the default policy.<br><br>  Default: `“”` 	|
