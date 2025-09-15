@@ -38,4 +38,4 @@ of the secret that contains external storage provider credentials.
        kubectl apply -f mkechildconfig.yaml
        ```
 
-Refer to [Backup and restore](../../../configuration/backup-restore/) for more detail.
+Refer to [Backup and restore](../../../configuration/backup-restore/) for more details.
