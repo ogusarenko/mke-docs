@@ -30,7 +30,7 @@ MKE 4k streamlines the cluster deployment through the use of a single YAML file,
 details the desired cluster configuration. This approach simplifies the setup
 process and ensures consistency in cluster deployments.
 
-1. Generate the YAML file for your installation:
+1. Generate the ``mke4.yaml`` configuration file for your installation:
 
    ```shell
    mkectl init > mke4.yaml
@@ -49,9 +49,10 @@ process and ensures consistency in cluster deployments.
      | **worker**            | A worker node that runs the data plane components. These nodes are dedicated to executing workloads and   handling the operational tasks assigned by the control plane. |
      | **single**            | A special role used when the cluster consists of a single node. This node handles both control plane and data plane components, effectively managing and executing workloads within a standalone environment. |
 
-   - Specify the external address in the in `apiServer.externalAddress` field.
-     The external address is the domain name of the load balancer configured
-     as described in [System Requirements: Load balancer](../system-requirements#load-balancer-requirements).
+   - Specify the external address in the `apiServer.externalAddress` field.
+     The external address is the domain name of the load balancer configured as
+     described in [System Requirements: Load
+     balancer](../system-requirements#load-balancer-requirements).
 
 {{< callout type="important" >}}
 You may need to add the SSH private key to your identity manager in order for mkectl to connect to it.

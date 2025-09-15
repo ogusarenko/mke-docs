@@ -52,15 +52,20 @@ upgrading MKE 3 to MKE 4k:
 
   {{< /callout >}}
 
-<a id="calico-migration-kdd-etcd">
+- The external address set in the `apiServer.externalAddress` field of the
+  ``MKE4.yaml`` configuration file. The external address is the domain name of
+  the load balancer configured as described in [System Requirements: Load
+  balancer](../../getting-started/system-requirements#load-balancer-requirements).
 
-</a>- Calico migration to Kubernetes Datastore Driver (KDD) from etcd
+<a id="calico-migration-kdd-etcd"></a>
+
+- Calico migration to Kubernetes Datastore Driver (KDD) from etcd.
 
   {{< callout type="warning" >}}
   To upgrade successfully to MKE 4k, the source MKE 3 cluster must be configured to use KDD.
   {{< /callout >}}
 
-  To migrate Calico to KDD from etcd:
+  **To migrate Calico to KDD from etcd:**
 
   1. Obtain the MKE 3 configuration file:
      ```shell

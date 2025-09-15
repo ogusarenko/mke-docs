@@ -55,7 +55,18 @@ apiServer:
   externalAddress: "mke.example.com:33001"
 ```
 
+{{< callout type="important" >}}
+
+The specified external address is automatically added to the SANs of the cluster certificate. If
+the external address is not set, the first controller node of the cluster is
+used, and anyone who visits their cluster through the address when the field is
+not set will be denied access.
+
+{{< /callout >}}
+
 The target port must match the HTTPS node port of the Ingress Controller,
-which is `33001` by default, but can be adjusted as needed. See the configuration
+which is `33001` by default, but can be adjusted as needed. Refer to the configuration
 details for `nodePorts` in the 
 [Ingress Controller configuration](../../configuration/ingress#configuration).
+
+

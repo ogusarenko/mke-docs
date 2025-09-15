@@ -46,6 +46,16 @@ authentication:
     enabled: false
 ```
 
+{{< callout type="important" >}}
+
+Verify that the external address is set in the `apiServer.externalAddress`
+field of the ``mke4.yaml`` configuration file. The external address is the
+domain name of the load balancer configured as described in [System
+Requirements: Load
+balancer](../../getting-started/system-requirements#load-balancer-requirements).
+
+{{< /callout >}}
+
 ## Set Expiration
 
 You can use the `expiry` section of the configuration file to set the expiration time for refresh and id tokens, in the format of number + time unit format. For example, `1h` to designate one hour.
