@@ -4,9 +4,15 @@ weight: 4
 ---
 
 [kubelogin](https://github.com/int128/kubelogin) is a helpful open-source tool
-that you can use to authenticate and set up a kubeconfig file for MKE 4k, with
-which you can add an authentication client application and audience to your MKE
-4k cluster.
+that you can use to authenticate and set up a kubeconfig file for MKE 4k.
+
+Once kubelogin is configured, whenever you run a `kubectl` command without a
+valid token the authentication process is automatically triggered.
+
+MKE 4k ships with a default `kubelogin` configuration that makes it easier to
+set the tool up. Thereafter, if you need to make adjustments to the `kubelogin`
+configuration, you can fall back to using the `audience` and
+`client application` parameters.
 
 {{< callout type="info" >}}
 
