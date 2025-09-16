@@ -24,12 +24,21 @@ mkectl upgrade --hosts-path <path-to-hosts-yaml> \
   --config-out <path-to-desired-file-location>
 ```
 
-The `--config-out` flag allows you to specify a path where the MKE 4k configuration
-file will be automatically created and saved during upgrade. If not specified,
-the configuration file prints to your console on completion. In this case, save
-the output to a file for future reference
+|             Flag           	| Detail 	|
+|---	|---	|
+| `--dry-run` 	| Enables you to perform tests of your upgrade without having to perform an actual upgrade, with a resulting output of the the various checks and the upgrade configurations. By default, the source MKE 3 and target MKE 4k configurations are printed to stdio. 	|
+| `--output` 	| Enables upgrade results to be saved to a folder, created in the `mke-upgrade` format.  <br><ul> <li>If the folder already exists, you will be prompted to overwrite it. </li> <li>If the flag is used without a path, the action will default to the XDG directory for your OS. Otherwise, you can indicate a specific folder by entering `--output=<path>`. Use the `help` command to learn the exact output path. <li>The directory created for the output files will change depending on the command you ran. Upgrades will use `mke-upgrade/`.  <li>Depending on the construction of the command you run and the context, the output folder will contain a combination of the following: <ul> <li>An `mke3.toml` configuration file <li>An `mke4.yaml` configuration file <li>Pre-upgrade checks, such as node health, cluster health, and version checks <li>Feature compatibility checks <li>Run summary </ul> </ul>|
+| `--force` 	| Enables you to continue to update without prompting for confirmation. 	|
 
-### Offline upgrade
+{{< callout type="info" >}}
+
+ You can pair the  `--dry-run` flag with the `--output` flag to save the output
+ results for an upgrade dry run to a specified folder.
+
+{{< /callout >}}
+
+
+## Offline upgrade
 
 To perform an offline upgrade from MKE 3 to MKE 4k, [prepare your environment
 as described in Offline
@@ -50,7 +59,7 @@ the following flags to the `mkectl upgrade` command:
 | `--image-registry-ca-file` | 	Sets the path to the PEM encoded certificate of the Certificate Authority that issued image registry TLS certificates. Optional. Must be provided if registry is using TLS certs issued by a non-publicly trusted CA.                                                                                                                                                                                                                                                           |
 | `--mke3-airgapped=true`    | Indicates that your environment is airgapped.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
-### Upgrade failure
+## Upgrade failure
 
 In the event of an upgrade failure, the upgrade process rolls back,
 restoring the MKE 3 cluster to its original state.
