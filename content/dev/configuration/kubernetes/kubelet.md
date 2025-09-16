@@ -77,14 +77,14 @@ For detail on all possible values, refer to the official Kubernetes
 documentation [Set Kubelet Parameters Via A Configuration
 File](https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/).
 
-The following example configuration creates a custom profile named `worker_profile_1`
+The following example configuration creates a custom profile named `worker-profile-1`
 that specifies thresholds for the garbage collection of images and eviction:
 
 ```yaml
 spec:
   kubelet:
     customProfiles:
-      - name: worker_profile_1
+      - name: worker-profile-1
         values:
           imageGCHighThresholdPercent: 85
           imageGCLowThresholdPercent: 80
@@ -109,7 +109,7 @@ To ensure your custom profile works correctly:
 You can assign a custom profile through the `hosts` section of the `mke4.yaml` configuration file, whereas the profile name is an installation time argument
 for the host.
 
-The following example configuration applies the `worker_profile_1` custom profile to
+The following example configuration applies the `worker-profile-1` custom profile to
 the `localhost` node:
 
 ```yaml
@@ -127,7 +127,7 @@ hosts:
       port: 22
       user: ubuntu
     installFlags:
-      - --profile=worker_profile_1
+      - --profile=worker-profile-1
 ```
 
 ### Debug worker profiles
@@ -149,7 +149,7 @@ Example of a k0scontroller error caused by an incorrect value for the
 `memoryThrottlingFactor` parameter in the worker profile:
 
 ```bash
-k0s[1619032]: time="2024-11-11 22:25:03" level=error msg="Failed to recover from previously failed reconciliation" component=workerconfig.Reconciler error="failed to generate resources for worker configuration: failed to decode worker profile \"worker_profile_1\": error unmarshaling JSON: while decoding JSON: json: cannot unmarshal string into Go struct field KubeletConfiguration.memoryThrottlingFactor of type float64"
+k0s[1619032]: time="2024-11-11 22:25:03" level=error msg="Failed to recover from previously failed reconciliation" component=workerconfig.Reconciler error="failed to generate resources for worker configuration: failed to decode worker profile \"worker-profile-1\": error unmarshaling JSON: while decoding JSON: json: cannot unmarshal string into Go struct field KubeletConfiguration.memoryThrottlingFactor of type float64"
 ```
 
 ## Precedence of kubelet configuration
