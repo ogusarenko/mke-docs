@@ -48,13 +48,6 @@ failed to wait for pods: failed to list pods: client rate limiter Wait returned
 an error: context deadline exceeded
 ```
 
-<!--- [BOP-947] -->
-
-## Managed user passwords are not migrated during upgrade from MKE 3
-
-The `admin` password is migrated during upgrade from MKE 3, however all other
-managed user passwords are not migrated.
-
 <!--- [BOP-964] -->
 
 ## mke-operator in crashloopbackoff status
@@ -74,30 +67,27 @@ source MKE 3.x system.
 
 Make a backup of the old `~/.mke/mke.kubeconf` file and then delete it.
 
-<!--- [BOP-1528] -->
+## `reset` command must be run with --force flag
 
-## Once applied, the apiserver.externalAddress parameter cannot be cleared
+You must run the `reset` command with the `--force` flag, as without this flag
+the command will always return an error.
 
-MKE 4k cannot clear the `apiserver.externalAddress` parameter once it has been
-applied in the `mke4.yaml` configuration file, as this can cause the MKE
-cluster to malfunction.
-
-No workaround is available at this time.
-
-<!--- [BOP-2063] -->
-
-## Upgrades from MKE 3 randomly fail while initializing k0rdent
-
-Upgrades from MKE 3 to MKE 4k sometimes fail with the following error:
-
-```bash
-FTL Upgrade failed due to error: failed to run step [Install MKE 4 Components]: unable to initialize k0rdent after upgrading to mke4: failed to wait for KCM Manager to be ready: failed to wait for KCM Manager deployment to be ready: context deadline exceeded
 ```
+mkectl reset -f mke4.yaml
+```
+
+Example output:
+
+```
+time="2025-09-08T19:35:44-04:00" level=info msg="==> Running phase: Disconnect from hosts"
+Error: reset requires --force
+```
+
+## `restore` command output sometimes hangs
+
+The command output for a restore operation sometimes hangs, even though the
+underlying restore operation is a success.
 
 **Workaround:**
 
-Following a successful rollback, attempt the upgrade again, with no changes to the `mkectl upgrade` command.
-
-## Custom TLS Certificate function is unavailable
-
-Customers cannot apply or manage custom TLS certficates.
+Run the restore operation with a large timeout, such as `--timeout 1800s`.

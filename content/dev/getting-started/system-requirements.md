@@ -21,7 +21,6 @@ To compare, the same testing showed repeated upgrade failures for MKE 3 systems 
 ## Software requirements
 
 - Operating systems:
-  - Ubuntu 20.04 Linux
   - Ubuntu 22.04 Linux
   - RHEL 8.10
   - Rocky Linux 9.4
