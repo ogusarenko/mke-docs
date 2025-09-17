@@ -49,7 +49,7 @@ authentication:
 {{< callout type="important" >}}
 
 Verify that the external address is set in the `apiServer.externalAddress`
-field of the ``mke4.yaml`` configuration file. The external address is the
+field of the `mke4.yaml` configuration file. The external address is the
 domain name of the load balancer configured as described in [System
 Requirements: Load
 balancer](../../getting-started/system-requirements#load-balancer-requirements).
@@ -107,7 +107,7 @@ authentication:
 
 ## Configure OAuth2
 
-You can use the `mke4k.yaml` configuration file to configure the Dex
+You can use the `mke4.yaml` configuration file to configure the Dex
 `oauth2` fields.
 
 Example configuration:

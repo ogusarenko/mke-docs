@@ -38,12 +38,12 @@ Common configuration file section: `spec.apiServer`
      --from-file=value=path/to/custom/config.cfg
      ```
 
-   3. Set the name of the secret to `MkeChildConfig`:
+  3. Set the name of the secret to `MkeChildConfig`:
 
-      ```
-      spec:
-        apiServer:
-          encryptionConfigSecret: custom-encryption-config
-      ```
+     ```
+     spec:
+       apiServer:
+         encryptionConfigSecret: custom-encryption-config
+     ```
 
 Refer to [kube-apiserver](../../../configuration/kubernetes/kube-apiserver/) for more details.

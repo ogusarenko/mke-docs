@@ -84,7 +84,7 @@ address of the load balancer endpoint from a freshly installed cluster.
 {{< callout type="important" >}}
 
 Verify that the external address for MKE 4k is set in the
-`apiServer.externalAddress` field of the ``mke4.yaml`` configuration file. The
+`apiServer.externalAddress` field of the `mke4.yaml` configuration file. The
 external address is the domain name of the load balancer configured as
 described in [System Requirements: Load
 balancer](../../getting-started/system-requirements#load-balancer-requirements) .

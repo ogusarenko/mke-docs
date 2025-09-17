@@ -17,7 +17,7 @@ configuration, you can fall back to using the `audience` and
 {{< callout type="info" >}}
 
 The kubectl command line tool is used in the kubelogin setup procedure
-described herein. You can, however use other such tools, by changing the exec
+described herein. You can, however, use other such tools by changing the exec
 commands as appropriate.
 
 {{< /callout >}}
@@ -79,7 +79,7 @@ commands as appropriate.
 
    {{< /callout >}}
 
-4. To switch `kubectl` to always use the oidc context:
+4. To switch `kubectl` to always use the OIDC context:
 
    ```
    kubectl config set-context --current --user=oidc

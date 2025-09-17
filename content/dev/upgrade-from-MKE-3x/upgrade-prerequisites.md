@@ -53,7 +53,7 @@ upgrading MKE 3 to MKE 4k:
   {{< /callout >}}
 
 - The external address set in the `apiServer.externalAddress` field of the
-  ``MKE4.yaml`` configuration file. The external address is the domain name of
+  `mke4.yaml` configuration file. The external address is the domain name of
   the load balancer configured as described in [System Requirements: Load
   balancer](../../getting-started/system-requirements#load-balancer-requirements).
 

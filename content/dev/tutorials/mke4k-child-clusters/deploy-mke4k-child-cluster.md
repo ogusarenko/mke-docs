@@ -27,7 +27,7 @@ and the basics of how to deploy child clusters.
 
 2. Enable the k0rdent CAPI providers for the specified cloud provider.
 
-   <!-- In 4.1.2 the .spec.k0rdent.providers field will be removed from the MkeConfig and all the CAPI providers from k0rdent release will be enabled by default and user will not need to worry about enabling them. -->
+   <!-- In 4.1.2 the `.spec.k0rdent.providers` field will be removed from the `MkeConfig` and all the CAPI providers from k0rdent release will be enabled by default and user will not need to worry about enabling them. -->
 
    To check whether providers are already enabled or to get the list of
    required providers, make an attempt to apply the `MkeChildConfig` object
@@ -44,7 +44,7 @@ and the basics of how to deploy child clusters.
    The MkeChildConfig "my-mke-child" is invalid: spec.infrastructure.provider: Invalid value: "aws": one or more required k0rdent providers are not deployed yet: [cluster-api-provider-aws cluster-api-provider-k0sproject-k0smotron]
    ```
 
-   To enable k0rdent providers you must add the providers from the error you
+   To enable k0rdent providers, you must add the providers from the error you
    received to the `mke4.yaml` configuration file of the mothership cluster.
    Be aware that the providers require a few minutes to start.
 
@@ -64,7 +64,7 @@ and the basics of how to deploy child clusters.
    ```
 
 4. Prepare and install the k0rdent Credential object for the cloud provider
-   that you will use with the `MkeChildConfig` object. Refer to the offiical
+   that you will use with the `MkeChildConfig` object. Refer to the official 
    k0rdent documentation, [The process](
    https://docs.k0rdent-enterprise.io/v1.1.0/admin/access/credentials/credentials-process/)
 

@@ -13,7 +13,7 @@ of the secret that contains external storage provider credentials.
 - Replace [Back up using an external storage
   provider](../../../configuration/backup-restore/external) steps 5-7 with the following:
 
-  5. Create the secret object with credentials in the `k0rdent` namespace where
+   5. Create the secret object with credentials in the `k0rdent` namespace where
      the `MkeChildConfig` object will be applied:
        ```
         kubectl -n k0rdent create secret generic aws-credentials --from-literal=aws_access_key_id=<AWS_ACCESS_KEY_ID> --from-literal=aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>

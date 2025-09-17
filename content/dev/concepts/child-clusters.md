@@ -8,7 +8,7 @@ mothership clusters. Refer to the k0rdent documentation, [Mirantis k0rdent
 Enterprise Concepts](https://docs.k0rdent-enterprise.io/latest/concepts/), for
 more information.
 
-{{< callout type=“warning >}}
+{{< callout type="warning" >}}
 
 - If you decide to use the `mkectl reset` command to wipe the standalone MKE
   cluster that is serving as the mothership cluster, you should delete all the
@@ -34,7 +34,7 @@ Key child cluster requirements include:
 
 - Configuration in line with that of a standalone cluster.
 
-- Exclusion of the mkectl CLI from deployment, to allow for the configuration
+- Exclusion of the mkectl CLI from deployment to allow for the configuration
   of GitOps systems and management of multiple child clusters at the same
   time.
 
@@ -47,7 +47,7 @@ sections of `MkeChildConfig` are the same as those in `MkeConfig`.
 
 {{< callout type="info" >}}
 
-Currently, AWS is the only supported cloud provideer for MKE 4k child clusters.
+Currently, AWS is the only supported cloud provider for MKE 4k child clusters.
 
 {{< /callout >}}
 

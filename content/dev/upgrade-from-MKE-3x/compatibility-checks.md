@@ -64,7 +64,7 @@ mkectl upgrade --dry-run --output=<output path> <additional-upgrade-arguments>
 
 ## Output Examples
 
-Click the heeadings below to view example output for each of the upgrade compatibility checks:
+Click the headings below to view example output for each of the upgrade compatibility checks:
 
 <br>
 <details>

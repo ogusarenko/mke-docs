@@ -24,7 +24,7 @@ To install an unmanaged CNI plugin on a fresh installation of MKE 4k:
       '.spec.network.providers |= ([{"enabled": true, "provider": "custom"}])'
       ```
 
-   2. Save the YAML configuration to a YAML file, for example `mke4k.yaml`,
+   2. Save the YAML configuration to a YAML file, for example `mke4.yaml`,
       and edit the file to set other desired configurations prior to using the
       file for installation.
 
