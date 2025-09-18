@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/backup-restore/
-  - /docs/configuration/backup-restore/
 title: Backup and restore
 weight: 1
 ---

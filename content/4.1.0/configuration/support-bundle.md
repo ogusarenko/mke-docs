@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/support-bundle/
-  - /docs/configuration/support-bundle/
 title: Support bundle
 weight: 4
 ---
@@ -19,7 +16,6 @@ obtain the support bundle plugin from the release archives and install it manual
     {{< tab >}}
     1. Optional. Install the Krew plugin manager if is not yet installed on your
        system. For detailed instruction, refer to the official Krew documentaiton
-       [Installing](https://krew.sigs.k8s.io/docs/user-guide/setup/install/).
     
     2. Install the support bundle plugin:
         
@@ -51,7 +47,6 @@ obtain the support bundle plugin from the release archives and install it manual
     and move the plugin to your ``$PATH``:
     
     ```
-    curl -L https://github.com/replicatedhq/troubleshoot/releases/latest/download/support-bundle_linux_amd64.tar.gz | tar xzvf -
     sudo mv ./support-bundle /usr/local/bin/kubectl-support_bundle
         ```
     {{< /tab >}}
@@ -79,7 +74,6 @@ method that was used to install the plugin.
     1. Download the latest version of the plugin:
 
     ```
-    curl -L https://github.com/replicatedhq/troubleshoot/releases/latest/download/support-bundle_linux_amd64.tar.gz | tar xzvf -
     ```
 
     2. Replace the existing plugin with the new version:
@@ -151,7 +145,6 @@ method that was used to install the plugin.
    By default, the support bundle collects cluster information and cluster resources.
     
    For a comprehensive list of available in-cluster collectors, refer to the official
-   Troubleshoot [All Collectors](https://troubleshoot.sh/docs/collect/all/)
    documentation.
 
 ## Collect host information using the k0s-provided YAML file

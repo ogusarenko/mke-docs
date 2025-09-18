@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/kubernetes/kubelet/
-  - /docs/configuration/kubernetes/kubelet/
 title: kubelet
 weight: 2
 ---
@@ -78,7 +75,6 @@ values can refer to fields in the kubelet configuration file.
 
 For detail on all possible values, refer to the official Kubernetes
 documentation [Set Kubelet Parameters Via A Configuration
-File](https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/).
 
 The following example configuration creates a custom profile named `worker_profile_1`
 that specifies thresholds for the garbage collection of images and eviction:
@@ -102,7 +98,6 @@ spec:
 To ensure your custom profile works correctly:
 
 - Cross-check `featureGates` in the custom profile against the official
-  Kubernetes [list of removed feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates-removed/), as adding a removed feature gate will prevent the kubelet from starting. 
 - Include only namespaced `sysctls` when you configure `allowedUnsafeSysctls`, as non-namespaced `sysctls` are unsupported by the kubelet and will prevent
   it from starting.
 {{< /callout >}}
@@ -168,4 +163,3 @@ configuration sources. For MKE 4k, the order is as follows:
 
 For more information on kubelet configuration value precedence, refer to the
 official Kubernetes documentation [Kubelet configuration merging
-order](https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/#kubelet-configuration-merging-order).

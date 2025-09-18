@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/container-network-interface/
-  - /docs/configuration/container-network-interface/
 title: Container Network Interfaces
 weight: 12
 ---

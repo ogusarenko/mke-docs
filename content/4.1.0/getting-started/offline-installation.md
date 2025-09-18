@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/getting-started/offline-installation/
-  - /docs/getting-started/offline-installation/
 title: Offline installation
 weight: 3
 ---

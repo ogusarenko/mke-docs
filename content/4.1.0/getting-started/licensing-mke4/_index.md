@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/getting-started/licensing-mke4/
-  - /docs/getting-started/licensing-mke4/
 title: Licensing MKE 4k
 weight: 4
 ---

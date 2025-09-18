@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/release-notes/
-  - /docs/release-notes/
 weight: 4
 ---
 

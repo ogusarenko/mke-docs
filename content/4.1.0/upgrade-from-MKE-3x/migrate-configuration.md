@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/upgrade-from-MKE-3x/migrate-configuration/
-  - /docs/upgrade-from-MKE-3x/migrate-configuration/
 title: Upgrade the Configuration
 weight: 3
 ---

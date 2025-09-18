@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/kubernetes/kube-scheduler/
-  - /docs/configuration/kubernetes/kube-scheduler/
 title: kube-scheduler
 weight: 5
 ---

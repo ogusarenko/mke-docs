@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/
-  - /docs/
 title: 4.1.0
 weight: 2
 ---

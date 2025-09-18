@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/nvidia-gpu/
-  - /docs/configuration/nvidia-gpu/
 title: NVIDIA GPU Workloads
 weight: 6
 ---
@@ -18,8 +15,6 @@ GPU Operator on your cluster. The use of this resource causes the following
 resources to be installed and configured on each node:
 
 * [GPU device driver](https://www.nvidia.com/en-us/drivers/)
-* [NVIDIA GPU Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)
-* [NVIDIA container runtime](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#configuring-containerd-for-kubernetes)
 
 {{< callout type="info" >}}
 Though it is not required, you can run the following command at any point to verify your GPU specifications:
@@ -40,7 +35,6 @@ Example output:
 
 For air-gapped MKE 4k clusters, you must deploy a package registry and mirror the drivers to it, as described in the
 official NVIDIA documentation, [Install NVIDIA GPU Operator in Air-Gapped
-Environments - Local Package Repository](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/install-gpu-operator-air-gapped.html#local-package-repository).
 
 {{< /callout >}}
 

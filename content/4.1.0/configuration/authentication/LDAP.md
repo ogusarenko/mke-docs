@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/authentication/LDAP/
-  - /docs/configuration/authentication/LDAP/
 title: LDAP
 weight: 3
 ---
@@ -63,4 +60,3 @@ For information on how to obtain the field values, refer to [setting up OpenLDAP
 | `groupSearch.nameAttr`             | Group name.                                                           |
 
 For more information, refer to the official DEX documentation
-[LDAP configuration](https://dexidp.io/docs/connectors/ldap/#configuration).

@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/kubernetes/etcd/
-  - /docs/configuration/kubernetes/etcd/
 title: etcd
 weight: 6
 ---
@@ -14,7 +11,6 @@ reason why Mirantis recommends that you deploy an odd number of MKE 4k manager
 nodes, as etcd uses the Raft consensus algorithm and thus requires that a
 quorum of nodes agrees on any updates to the cluster state.
 
-For detailed information, refer to the official [etcd documentation](https://etcd.io/docs/).
 
 ## Configure etcd
 

@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/node-feature-discovery/
-  - /docs/configuration/node-feature-discovery/
 title: Node Feature Discovery (NFD)
 weight: 8
 ---

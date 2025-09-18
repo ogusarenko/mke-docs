@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/release-notes/4.1.0/enhancements/
-  - /docs/release-notes/4.1.0/enhancements/
 title: Enhancements
 weight: 2
 ---

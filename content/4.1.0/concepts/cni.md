@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/concepts/cni/
-  - /docs/concepts/cni/
 title: Container Network Interfaces
 weight: 4
 ---

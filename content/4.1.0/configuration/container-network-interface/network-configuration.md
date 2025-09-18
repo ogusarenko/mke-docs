@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/container-network-interface/network-configuration/
-  - /docs/configuration/container-network-interface/network-configuration/
 title: Network Configuration
 weight: 2
 ---

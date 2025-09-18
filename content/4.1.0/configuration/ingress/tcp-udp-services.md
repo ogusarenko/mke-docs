@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/ingress/tcp-udp-services/
-  - /docs/configuration/ingress/tcp-udp-services/
 title: TCP and UDP services
 weight: 3
 ---

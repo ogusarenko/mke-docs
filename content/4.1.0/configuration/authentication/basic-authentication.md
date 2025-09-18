@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/authentication/basic-authentication/
-  - /docs/configuration/authentication/basic-authentication/
 title: Basic authentication
 weight: 1
 ---

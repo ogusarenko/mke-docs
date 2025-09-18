@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/monitoring/
-  - /docs/configuration/monitoring/
 title: Monitoring
 weight: 4
 ---
@@ -89,7 +86,6 @@ monitoring:
 advanced monitoring and alerting solution. Once it is integrated, Mirantis
 OpsCare will enhance the monitoring capabilities of MKE 4k by incorporating
 additional tools and features, such as [Prometheus
-Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/).
 
 Disabled by default, you can enable Mirantis OpsCare through the `mke4.yaml` configuration file.
 

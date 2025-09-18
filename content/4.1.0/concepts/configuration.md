@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/concepts/configuration/
-  - /docs/concepts/configuration/
 title: Configuration
 weight: 2
 ---

@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/getting-started/access-manage-cluster-kubectl/
-  - /docs/getting-started/access-manage-cluster-kubectl/
 title: Access and manage the cluster with kubectl
 weight: 5
 ---
@@ -11,7 +8,6 @@ not accessible from outside of the cluster, as the certificates issued through
 the procedures herein can be used to access it. {{< /callout >}}
 
 In addition to the MKE 4k Dashboard, you can access and manage your MKE 4k
-cluster using kubectl with a [kubeconfig file](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/).
 
 In MKE 4k, the kubeconfig file provides everything you need, as all of the
 necessary certificates are embedded therein. This is counter to MKE 3, which
@@ -44,7 +40,6 @@ and MKE 3 client bundles:
 kubeconfig files for specific users.{{< /callout >}}
 
 Verify the installation of [OpenSSL](https://github.com/openssl/openssl) and
-[kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl).
 
 Use your terminal to run the following procedure from the MKE 4k cluster that you
 previously configured with the `mkectl apply` command.

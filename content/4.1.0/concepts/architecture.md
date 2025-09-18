@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/concepts/architecture/
-  - /docs/concepts/architecture/
 title: Architecture
 weight: 1
 ---

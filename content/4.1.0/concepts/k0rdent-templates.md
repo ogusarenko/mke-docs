@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/concepts/k0rdent-templates/
-  - /docs/concepts/k0rdent-templates/
 weight: 3
 ---
 

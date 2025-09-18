@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/backup-restore/in-cluster/
-  - /docs/configuration/backup-restore/in-cluster/
 title: Back up with an in-cluster storage provider
 weight: 2
 ---

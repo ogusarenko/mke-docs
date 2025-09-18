@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/getting-started/get-current-mke-config/
-  - /docs/getting-started/get-current-mke-config/
 title: Obtain the current MKE 4k configuration file
 weight: 7
 ---

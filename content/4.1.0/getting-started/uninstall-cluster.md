@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/getting-started/uninstall-cluster/
-  - /docs/getting-started/uninstall-cluster/
 title: Uninstall a cluster
 weight: 8
 ---

@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/container-network-interface/cni-limitations/
-  - /docs/configuration/container-network-interface/cni-limitations/
 title: Limitations
 weight: 2
 ---

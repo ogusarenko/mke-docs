@@ -1,13 +1,9 @@
 ---
-aliases:
-  - /latest/tutorials/authentication-provider-setup/setting-up-openldap-as-an-ldap-provider/
-  - /docs/tutorials/authentication-provider-setup/setting-up-openldap-as-an-ldap-provider/
 title: Setting up OpenLDAP as an LDAP provider
 weight: 5
 ---
 
 To create a basic OpenLDAP server to test
-[LDAP](../../../../docs/configuration/authentication/ldap) with MKE 4k:
 
 {{< callout type="info" >}}
 To run the OpenLDAP server you must have [Docker and Docker Compose](https://docs.docker.com/engine/install/) installed on your system.

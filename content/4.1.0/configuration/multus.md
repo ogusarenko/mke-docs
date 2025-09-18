@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/multus/
-  - /docs/configuration/multus/
 title: Multus
 weight: 11
 ---

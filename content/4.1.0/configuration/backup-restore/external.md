@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/backup-restore/external/
-  - /docs/configuration/backup-restore/external/
 title: Back up using an external storage provider
 weight: 2
 ---
@@ -49,7 +46,6 @@ these buckets be unique for each Kubernetes cluster.
 
    To deploy multiple MKE 4k clusters, you can create a unique
    username per cluster instead of the default `mke4backup`. For more
-   information, refer to the official AWS documentation, [What is IAM?](http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html).
 
    {{< /callout >}}
 

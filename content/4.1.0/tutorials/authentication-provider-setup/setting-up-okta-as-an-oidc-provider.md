@@ -1,12 +1,8 @@
 ---
-aliases:
-  - /latest/tutorials/authentication-provider-setup/setting-up-okta-as-an-oidc-provider/
-  - /docs/tutorials/authentication-provider-setup/setting-up-okta-as-an-oidc-provider/
 title: Setting up Okta as an OIDC provider
 weight: 3
 ---
 
-To configure an Okta application to serve as your [OIDC authentication](../../../../docs/configuration/authentication/oidc) provider for MKE 4k:
 
 1. Navigate to (Okta)[https://www.okta.com/] and sign in to your account dashboard.
 2. Select **OIDC - OpenID Connect** for **Sign-in method**.

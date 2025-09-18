@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/release-notes/4.1.0/known-issues/
-  - /docs/release-notes/4.1.0/known-issues/
 title: Known issues
 weight: 4
 ---

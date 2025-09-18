@@ -1,14 +1,10 @@
 ---
-aliases:
-  - /latest/configuration/policycontroller/opagatekeeper/
-  - /docs/configuration/policycontroller/opagatekeeper/
 title: OPA Gatekeeper
 weight: 2
 ---
 
 MKE 4k supports the use of OPA Gatekeeper for purposes of policy control.
 
-[Open Policy Agent (OPA)](https://open-policy-agent.github.io/gatekeeper/website/docs/) is an open source policy engine that facilitates policy-based control for cloud native environments. OPA introduces a high-level declarative language called Rego that decouples policy decisions from enforcement.
 
 The OPA Constraint Framework introduces the following primary resources:
 

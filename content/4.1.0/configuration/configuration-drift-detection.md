@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/configuration-drift-detection/
-  - /docs/configuration/configuration-drift-detection/
 title: Configuration Drift Detection
 weight: 12
 ---

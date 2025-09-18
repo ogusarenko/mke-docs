@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/getting-started/licensing-mke4/apply-mke4k-license-post-installation/
-  - /docs/getting-started/licensing-mke4/apply-mke4k-license-post-installation/
 title: Apply an MKE 4k license following installation
 weight: 4
 ---

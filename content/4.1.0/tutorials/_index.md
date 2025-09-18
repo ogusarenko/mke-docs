@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/tutorials/
-  - /docs/tutorials/
 weight: 4
 ---
 

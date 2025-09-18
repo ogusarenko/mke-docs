@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/getting-started/licensing-mke4/obtain-mke4k-license/
-  - /docs/getting-started/licensing-mke4/obtain-mke4k-license/
 title: Obtain your MKE 4k license
 weight: 2
 ---

@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/authentication/OIDC/
-  - /docs/configuration/authentication/OIDC/
 title: OIDC
 weight: 2
 ---
@@ -37,4 +34,3 @@ For information on how to obtain the field values, refer to [Setting up Okta as 
 | `clientSecret` | Secret from the IdP application configuration.                       |
 
 For more information, refer to the official DEX documentation
-[OIDC configuration](https://dexidp.io/docs/connectors/oidc/#configuration).

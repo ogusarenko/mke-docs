@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/kubernetes/kube-apiserver/
-  - /docs/configuration/kubernetes/kube-apiserver/
 title: kube-apiserver
 weight: 3
 ---

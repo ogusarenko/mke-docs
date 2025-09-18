@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/getting-started/add-and-remove-cluster-nodes/
-  - /docs/getting-started/add-and-remove-cluster-nodes/
 title: Add and remove cluster nodes
 weight: 6
 ---

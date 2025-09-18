@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/container-network-interface/enable-cni-providers/
-  - /docs/configuration/container-network-interface/enable-cni-providers/
 title: Enable CNI Providers
 weight: 3
 ---

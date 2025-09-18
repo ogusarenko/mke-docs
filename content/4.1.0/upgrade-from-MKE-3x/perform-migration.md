@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/upgrade-from-MKE-3x/perform-migration/
-  - /docs/upgrade-from-MKE-3x/perform-migration/
 title: Perform the Upgrade
 weight: 4
 ---

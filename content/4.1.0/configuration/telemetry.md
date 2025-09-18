@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/telemetry/
-  - /docs/configuration/telemetry/
 title: Telemetry
 weight: 4
 ---

@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/getting-started/start-interacting-with-cluster/
-  - /docs/getting-started/start-interacting-with-cluster/
 title: Start interacting with the cluster
 weight: 4
 ---

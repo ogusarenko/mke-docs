@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/tutorials/k0s-single-node/k0s-single-node-scenario/
-  - /docs/tutorials/k0s-single-node/k0s-single-node-scenario/
 title: Create a Kubernetes cluster in single node and install MKE 4k
 weight: 2
 ---

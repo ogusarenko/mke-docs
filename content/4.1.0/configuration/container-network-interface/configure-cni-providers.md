@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/container-network-interface/configure-cni-providers/
-  - /docs/configuration/container-network-interface/configure-cni-providers/
 title: Configure CNI Providers
 weight: 4
 ---
@@ -98,9 +95,6 @@ The default network configuration described herein offers a serviceable, low mai
 {{< callout type="info" >}} Refer to the official Tigera Operator documentation
 for:
 
-- [Information on how to prepare the required content for the `values.yaml` specification](https://docs.tigera.io/calico/latest/getting-started/kubernetes/windows-calico/operator)
-- The [`values.yaml` information content](https://docs.tigera.io/calico/latest/reference/installation/api#operator.tigera.io/v1.Installation)
-- The [`defaultFelixConfiguration` content for the `values.yaml` specification(https://docs.tigera.io/calico/latest/reference/resources/felixconfig)
 
 You can view the full `values.yaml` specification for the Helm chart needed to install Tigera Operator at the [Project Calico GitHub](https://github.com/projectcalico/calico/blob/master/charts/tigera-operator/values.yaml).
 

@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/getting-started/licensing-mke4/set-license-in-configuration/
-  - /docs/getting-started/licensing-mke4/set-license-in-configuration/
 title: Set your license in the configuration
 weight: 3
 ---

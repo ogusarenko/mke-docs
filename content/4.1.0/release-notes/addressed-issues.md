@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/release-notes/4.1.0/addressed-issues/
-  - /docs/release-notes/4.1.0/addressed-issues/
 title: Addressed issues
 weight: 3
 ---

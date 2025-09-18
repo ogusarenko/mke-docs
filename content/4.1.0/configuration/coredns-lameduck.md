@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/coredns-lameduck/
-  - /docs/configuration/coredns-lameduck/
 title: CoreDNS Lameduck
 weight: 6
 ---

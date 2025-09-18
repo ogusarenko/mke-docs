@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/mke4k-dashboard/
-  - /docs/configuration/mke4k-dashboard/
 title: MKE 4k Dashboard
 weight: 6
 ---

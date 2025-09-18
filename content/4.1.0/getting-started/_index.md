@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/getting-started/
-  - /docs/getting-started/
 weight: 2
 ---
 

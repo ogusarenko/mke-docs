@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/add-services/
-  - /docs/configuration/add-services/
 title: Add services
 weight: 3
 ---
@@ -15,7 +12,6 @@ weight: 3
 Through the use of the `services` section of the `mke4.yaml` configuration
 file, you can add additional components to your MKE 4k installation. This section will pass the input values through to k0rdent, following the
 typical [k0rdent services
-format](https://docs.k0rdent.io/latest/user/services/).
 
 Example:
 
@@ -38,4 +34,3 @@ kubectl get servicetemplates -A
 
 To learn more about the services sanctioned by k0rdent and to find
 instructions on how to create service templates, refer to the [k0rdent
-catalog](https://catalog.k0rdent.io/latest/).

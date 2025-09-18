@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/getting-started/install-MKE-4k-CLI/
-  - /docs/getting-started/install-MKE-4k-CLI/
 title: Install the MKE 4k CLI
 weight: 2
 ---
@@ -96,8 +93,6 @@ You can now proceed with MKE 4k cluster creation.
 
    | Distribution | Architecture | Download                                                                                                          |
    | ------------ | ------------ | ----------------------------------------------------------------------------------------------------------------- |
-   | Linux        | x86_64       | [download](https://github.com/mirantiscontainers/mke-release/releases/latest/download/mkectl_linux_x86_64.tar.gz) |
-   | MacOS        | x86_64       | [download](https://github.com/mirantiscontainers/mke-release/releases/latest/download/mkectl_darwin_arm64.tar.gz) |
 
 2. Ensure that the `mkectl` binary is executable:
 

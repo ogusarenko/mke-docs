@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/
-  - /docs/configuration/
 title: Configuration
 weight: 3
 ---

@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/release-notes/features-summary/
-  - /docs/release-notes/features-summary/
 title: Features Summary
 weight: 1
 ---

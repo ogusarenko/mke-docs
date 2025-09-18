@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/oss-download/
-  - /docs/oss-download/
 title: Open Source Components and Licenses
 weight: 9
 ---

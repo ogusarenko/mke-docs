@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/getting-started/system-requirements/
-  - /docs/getting-started/system-requirements/
 title: System requirements
 weight: 1
 ---

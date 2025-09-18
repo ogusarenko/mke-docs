@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/container-network-interface/cni-configuration-example/
-  - /docs/configuration/container-network-interface/cni-configuration-example/
 title: CNI Configuration Example
 weight: 1
 ---

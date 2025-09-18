@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/kubernetes/
-  - /docs/configuration/kubernetes/
 title: Kubernetes components
 weight: 2
 ---

@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/kubernetes/kube-controller-manager/
-  - /docs/configuration/kubernetes/kube-controller-manager/
 title: kube-controller-manager
 weight: 4
 ---

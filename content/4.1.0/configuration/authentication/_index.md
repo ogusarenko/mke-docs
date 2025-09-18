@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/authentication/
-  - /docs/configuration/authentication/
 title: Authentication
 weight: 1
 ---

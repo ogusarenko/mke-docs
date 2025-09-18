@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/cloudproviders/
-  - /docs/configuration/cloudproviders/
 title: Cloud providers
 weight: 9
 ---

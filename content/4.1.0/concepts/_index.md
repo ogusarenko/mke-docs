@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/concepts/
-  - /docs/concepts/
 weight: 1
 ---
 

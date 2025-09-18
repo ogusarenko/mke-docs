@@ -1,7 +1,4 @@
 ---
-aliases:
-  - /latest/configuration/metallb/
-  - /docs/configuration/metallb/
 title: MetalLB load balancer
 weight: 3
 ---
