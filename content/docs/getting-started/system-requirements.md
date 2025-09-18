@@ -15,10 +15,11 @@ documentation](https://docs.k0sproject.io/v1.29.4+k0s.0/system-requirements/).
 ## Software requirements
 
 - Operating systems:
+  - Ubuntu 20.04 Linux
   - Ubuntu 22.04 Linux
   - RHEL 8.10
   - Rocky Linux 9.4
-- Architecture: `amd64` `arm64`
+- Architecture: `amd64`
 - CNI: Calico
 
 ## Load balancer requirements
@@ -34,7 +35,6 @@ to each controller through the following ports:
 | Listen port | Target port | Purpose             | Configurable         |
 | ----------- | ----------- | ------------------- | -------------------- |
 | 6443        | 6443        | Kubernetes API      | {{< icon "ban" >}}   |
-| 8132        | 8132        | Konnectivity        | {{< icon "ban" >}}   |
 | 9443        | 9443        | Controller join API | {{< icon "ban" >}}   |
 | 443         | 33001       | Ingress Controller  | {{< icon "check" >}} |
 

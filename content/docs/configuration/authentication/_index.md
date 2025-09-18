@@ -23,7 +23,7 @@ protocol you choose to deploy.
 
 - **Identity Provider (IdP):** To use OIDC or SAML, you must configure an identity provider. For examples of how to use Okta as an authentication service provider for either of these protocols, refer to [OIDC](../../configuration/authentication/oidc) or [SAML](../../configuration/authentication/saml).
 
-- **LDAP Server:** To use LDAP, you must have an LDAP server configured. A setup example for an OpenLDAP server is available at [LDAP](../../tutorials/authentication-provider-setup/ldap).
+- **LDAP Server:** To use LDAP, you must have an LDAP server configured. A setup example for an OpenLDAP server is available at [LDAP](../../configuration/authentication/ldap).
 
 ## Configuration
 
@@ -43,6 +43,8 @@ authentication:
   saml:
     enabled: false
 ```
+
+## Set Expiration
 
 You can use the `expiry` section of the configuration file to set the expiration time for refresh and id tokens, in the format of number + time unit format. For example, `1h` to designate one hour.
 
@@ -66,3 +68,16 @@ The following table shows all of the available fields for the `expiry` section.
 | `expiry.refreshTokens.absoluteLifetime`  | Absolute time frame of a refresh token.                                  |
 | `expiry.refreshTokens.disableRotation`   | Disable every-request rotation.                                          |
 | `expiry.refreshTokens.reuseInterval`     | Interval for obtaining the same refresh token from the refresh endpoint. |
+
+## Unsupported functions
+
+Authentication functions that are not supported in MKE 4 include:
+
+* OIDC proxies
+* SAML proxies
+* LDAP disablement of referral chasing
+* LDAP JIT provisioning
+* LDAP SAML logins
+* LDAP simple pagination
+* LDAP user sync
+* MFA (Multi-Factor Authentication)
