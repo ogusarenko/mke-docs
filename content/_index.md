@@ -1,6 +1,7 @@
 ---
 title: Documentation
 layout: hextra-home
+hideVersionDropdown: true
 ---
 
 <div class="hx-mt-6 hx-mb-6">

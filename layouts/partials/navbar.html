@@ -27,6 +27,7 @@
           <span class="hx-mx-2 hx-font-extrabold hx-inline hx-select-none" title="{{ .Site.Title }}">{{- .Site.Title -}}</span>
         {{- end }}
       </a>
+      {{ if not .Params.hideVersionDropdown }}
       <div class="hx-relative hx-ml-2" id="version-dropdown-wrapper">
         <select id="version-selector">
           {{ if eq .Section "dev" }}
@@ -39,6 +40,7 @@
           {{ end }}
         </select>
       </div>
+      {{ end }}
     </div>
     <script>
     (function() {
